@@ -331,7 +331,7 @@ parameters:
 
         - '#Method (.*?) specified in iterable type Symfony\\Component\\Process\\Process#'
         - '#Cannot cast PhpParser\\Node\\Expr\\Error\|PhpParser\\Node\\Identifier to string#'
-        - '#Class cognitive complexity for "DumpNodesCommand" is 103, keep it under 50#'
+        - '#Class cognitive complexity for "DumpNodesCommand" is \d+, keep it under 50#'
         - '#Cognitive complexity for "Rector\\Utils\\DocumentationGenerator\\Command\\DumpNodesCommand\:\:execute\(\)" is \d+, keep it under 9#'
 
         - '#Method Rector\\Utils\\DocumentationGenerator\\Node\\NodeClassProvider\:\:getNodeClasses\(\) should return array<class\-string\> but returns array<int, \(int\|string\)\>#'

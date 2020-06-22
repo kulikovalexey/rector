@@ -11,6 +11,7 @@ use Rector\Php80\Rector\FunctionLike\UnionTypesRector;
 use Rector\Php80\Rector\Identical\StrEndsWithRector;
 use Rector\Php80\Rector\Identical\StrStartsWithRector;
 use Rector\Php80\Rector\NotIdentical\StrContainsRector;
+use Rector\Php80\Rector\Switch_\ChangeSwitchToMatchRector;
 use Rector\Php80\Rector\Ternary\GetDebugTypeRector;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
@@ -36,4 +37,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(TokenGetAllToObjectRector::class);
 
     $services->set(RemoveUnusedVariableInCatchRector::class);
+
+    $services->set(ChangeSwitchToMatchRector::class);
 };
