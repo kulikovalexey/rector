@@ -58,12 +58,6 @@
     "replace": {
         "rector/rector-prefixed": "self.version"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/TomasVotruba/PHP-Parser.git"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "Rector\\Architecture\\": "rules/architecture/src",
