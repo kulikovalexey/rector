@@ -24,21 +24,21 @@ use Rector\NodeTypeResolver\Node\AttributeKey;
 final class PropertyRanker
 {
     /**
-     * @param Property|ClassConst $property
+     * @param Property|ClassConst $stmt
      */
-    public function rank(Stmt $property): int
+    public function rank(Stmt $stmt): int
     {
         /** @var PhpDocInfo|null $phpDocInfo */
-        $phpDocInfo = $property->getAttribute(AttributeKey::PHP_DOC_INFO);
+        $phpDocInfo = $stmt->getAttribute(AttributeKey::PHP_DOC_INFO);
         if ($phpDocInfo === null) {
             return 1;
         }
 
         switch (true) {
-            case $property->isPublic():
+            case $stmt->isPublic():
                 $decreaseRankBy = 2;
                 break;
-            case $property->isProtected():
+            case $stmt->isProtected():
                 $decreaseRankBy = 1;
                 break;
             default:
@@ -46,7 +46,7 @@ final class PropertyRanker
         }
 
         $varType = $phpDocInfo->getVarType();
-        if ($property instanceof ClassConst) {
+        if ($stmt instanceof ClassConst) {
             return 5 - $decreaseRankBy;
         }
 
