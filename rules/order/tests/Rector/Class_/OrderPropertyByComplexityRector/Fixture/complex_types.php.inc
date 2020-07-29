@@ -66,16 +66,6 @@ class ComplexTypes
      */
     private $integer;
     /**
-     * Static cache
-     *
-     * @var string[][]
-     */
-    private static $arrayOfStringsNested = [];
-    /**
-     * @var string[]
-     */
-    private $arrayOfStrings = [];
-    /**
      * @var mixed[]
      *
      * Rich information about methods, e.g.:
@@ -89,6 +79,16 @@ class ComplexTypes
      *     |  end => 29
      */
     private $arrayOfMixedPlusContent = [];
+    /**
+     * @var string[]
+     */
+    private $arrayOfStrings = [];
+    /**
+     * Static cache
+     *
+     * @var string[][]
+     */
+    private static $arrayOfStringsNested = [];
     /**
      * @var ComplexType
      */

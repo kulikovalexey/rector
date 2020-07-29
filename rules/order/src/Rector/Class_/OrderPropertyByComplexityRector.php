@@ -6,6 +6,7 @@ namespace Rector\Order\Rector\Class_;
 
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
+use PhpParser\Node\Stmt\ClassConst;
 use PhpParser\Node\Stmt\Property;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\CodeSample;
@@ -98,57 +99,45 @@ PHP
      */
     public function refactor(Node $node): ?Node
     {
-        $propertyByVisibilityByPosition = $this->resolvePropertyByVisibilityByPosition($node);
+        $propertyByPosition = $this->resolvePropertyByPosition($node);
 
-        foreach ($propertyByVisibilityByPosition as $propertyByPosition) {
-            $propertyNameToRank = [];
-            $propertyPositionByName = [];
+        $propertyNameToRank = [];
+        $propertyPositionByName = [];
 
-            foreach ($propertyByPosition as $position => $property) {
-                /** @var string $propertyName */
-                $propertyName = $this->getName($property);
+        foreach ($propertyByPosition as $position => $property) {
+            /** @var string $propertyName */
+            $propertyName = $this->getName($property);
 
-                $propertyPositionByName[$position] = $propertyName;
-                $propertyNameToRank[$propertyName] = $this->propertyRanker->rank($property);
-            }
-
-            asort($propertyNameToRank);
-            $sortedPropertyByRank = array_keys($propertyNameToRank);
-
-            $oldToNewKeys = $this->stmtOrder->createOldToNewKeys($propertyPositionByName, $sortedPropertyByRank);
-
-            $this->stmtOrder->reorderClassStmtsByOldToNewKeys($node, $oldToNewKeys);
+            $propertyPositionByName[$position] = $propertyName;
+            $propertyNameToRank[$propertyName]['rank'] = $this->propertyRanker->rank($property);
+            $propertyNameToRank[$propertyName]['name'] = $propertyName;
         }
+
+        // Sorting by rank and then property name here...
+        $rank = array_column($propertyNameToRank, 'rank');
+        $name = array_column($propertyNameToRank, 'name');
+        array_multisort($rank, SORT_ASC, $name, SORT_ASC, $propertyNameToRank);
+
+        $sortedPropertyByRank = array_keys($propertyNameToRank);
+        $oldToNewKeys = $this->stmtOrder->createOldToNewKeys($propertyPositionByName, $sortedPropertyByRank);
+
+        $this->stmtOrder->reorderClassStmtsByOldToNewKeys($node, $oldToNewKeys);
 
         return $node;
     }
 
-    private function getVisibilityAsString(Property $property): string
-    {
-        if ($property->isPrivate()) {
-            return 'private';
-        }
-
-        if ($property->isProtected()) {
-            return 'protected';
-        }
-
-        return 'public';
-    }
-
     /**
-     * @return Property[][]
+     * @return Property[]|ClassConst[]
      */
-    private function resolvePropertyByVisibilityByPosition(Class_ $class): array
+    private function resolvePropertyByPosition(Class_ $class): array
     {
         $propertyByVisibilityByPosition = [];
         foreach ($class->stmts as $position => $classStmt) {
-            if (! $classStmt instanceof Property) {
+            if (! $classStmt instanceof Property && ! $classStmt instanceof ClassConst) {
                 continue;
             }
 
-            $visibility = $this->getVisibilityAsString($classStmt);
-            $propertyByVisibilityByPosition[$visibility][$position] = $classStmt;
+            $propertyByVisibilityByPosition[$position] = $classStmt;
         }
 
         return $propertyByVisibilityByPosition;
