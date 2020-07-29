@@ -134,11 +134,11 @@ final class CreateCommand extends Command
             $targetDirectory
         );
 
-        $testCaseFilePath = $this->resolveTestCaseFilePath($generatedFilePaths);
+        $testCaseDirectoryPath = $this->resolveTestCaseDirectoryPath($generatedFilePaths);
 
         $this->configFilesystem->appendRectorServiceToSet($configuration, $templateVariables);
 
-        $this->printSuccess($configuration->getName(), $generatedFilePaths, $testCaseFilePath);
+        $this->printSuccess($configuration->getName(), $generatedFilePaths, $testCaseDirectoryPath);
 
         return ShellCode::SUCCESS;
     }
@@ -162,7 +162,7 @@ final class CreateCommand extends Command
     /**
      * @param string[] $generatedFilePaths
      */
-    private function resolveTestCaseFilePath(array $generatedFilePaths): string
+    private function resolveTestCaseDirectoryPath(array $generatedFilePaths): string
     {
         foreach ($generatedFilePaths as $generatedFilePath) {
             if (! Strings::endsWith($generatedFilePath, 'Test.php')) {
@@ -170,7 +170,7 @@ final class CreateCommand extends Command
             }
 
             $generatedFileInfo = new SmartFileInfo($generatedFilePath);
-            return $generatedFileInfo->getRelativeFilePathFromCwd();
+            return dirname($generatedFileInfo->getRelativeFilePathFromCwd());
         }
 
         throw new ShouldNotHappenException();
