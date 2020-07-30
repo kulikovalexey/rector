@@ -40,6 +40,7 @@ parameters:
         old_to_preffered_classes:
             # prevent PHPStorm autocomplete mess
             'Symfony\Component\DependencyInjection\Variable': 'PhpParser\Node\Expr\Variable'
+            'phpDocumentor\Reflection\DocBlock\Tags\Param': 'PhpParser\Node\Param'
             'Closure': 'PhpParser\Node\Expr\Closure'
             'phpDocumentor\Reflection\DocBlock\Tags\Return_': 'PhpParser\Node\Stmt\Return_'
             'PHPUnit\TextUI\Configuration\Variable': 'PhpParser\Node\Expr\Variable'
