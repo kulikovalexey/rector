@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Rector\CodingStyle\Rector\FuncCall;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\ConstFetch;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Name;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\CodeSample;
 use Rector\Core\RectorDefinition\RectorDefinition;
@@ -19,14 +19,14 @@ use Rector\Core\RectorDefinition\RectorDefinition;
 final class FunctionCallToConstantRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
-     * @var string[]
-     */
-    private $functionsToConstants = [];
-
-    /**
      * @var string
      */
     public const FUNCTIONS_TO_CONSTANTS = '$functionsToConstants';
+
+    /**
+     * @var string[]
+     */
+    private $functionsToConstants = [];
 
     public function getDefinition(): RectorDefinition
     {

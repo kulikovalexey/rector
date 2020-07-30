@@ -152,7 +152,12 @@ final class CreateCommand extends Command
         $this->symfonyStyle->title($message);
 
         sort($generatedFilePaths);
-        $this->symfonyStyle->listing($generatedFilePaths);
+
+        foreach ($generatedFilePaths as $generatedFilePath) {
+            $fileInfo = new SmartFileInfo($generatedFilePath);
+            $relativeFilePath = $fileInfo->getRelativeFilePathFromCwd();
+            $this->symfonyStyle->writeln(' * ' . $relativeFilePath);
+        }
 
         $message = sprintf('Make tests green again:%svendor/bin/phpunit %s', PHP_EOL . PHP_EOL, $testCaseFilePath);
 

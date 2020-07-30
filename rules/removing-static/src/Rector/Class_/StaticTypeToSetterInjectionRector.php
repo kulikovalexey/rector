@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Rector\RemovingStatic\Rector\Class_;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Assign;
 use PhpParser\Node\Expr\MethodCall;
@@ -17,6 +16,7 @@ use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
 use PHPStan\Type\ObjectType;
 use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfo;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\PhpParser\Builder\MethodBuilder;
 use Rector\Core\PhpParser\Builder\ParamBuilder;
 use Rector\Core\Rector\AbstractRector;
@@ -31,6 +31,11 @@ use Rector\NodeTypeResolver\Node\AttributeKey;
 final class StaticTypeToSetterInjectionRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
+     * @var string
+     */
+    public const STATIC_TYPES = '$staticTypes';
+
+    /**
      * @var string[]
      */
     private $staticTypes = [];
@@ -39,14 +44,8 @@ final class StaticTypeToSetterInjectionRector extends AbstractRector implements 
      * @var PropertyNaming
      */
     private $propertyNaming;
-    /**
-     * @var string
-     */
-    public const STATIC_TYPES = '$staticTypes';
 
-    /**
-     * @param string[] $staticTypes
-     */
+
     public function __construct(PropertyNaming $propertyNaming)
     {
         $this->propertyNaming = $propertyNaming;

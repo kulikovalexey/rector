@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Rector\Generic\Rector\Interface_;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\Class_;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\ConfiguredCodeSample;
 use Rector\Core\RectorDefinition\RectorDefinition;
@@ -21,14 +21,14 @@ use Rector\Core\RectorDefinition\RectorDefinition;
 final class MergeInterfacesRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
-     * @var string[]
-     */
-    private $oldToNewInterfaces = [];
-
-    /**
      * @var string
      */
     public const OLD_TO_NEW_INTERFACES = '$oldToNewInterfaces';
+
+    /**
+     * @var string[]
+     */
+    private $oldToNewInterfaces = [];
 
     public function getDefinition(): RectorDefinition
     {

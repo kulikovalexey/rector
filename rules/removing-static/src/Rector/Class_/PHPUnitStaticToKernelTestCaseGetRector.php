@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Rector\RemovingStatic\Rector\Class_;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\Assign;
@@ -21,6 +20,7 @@ use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Expression;
 use PhpParser\Node\Stmt\Property;
 use PHPStan\Type\ObjectType;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Exception\ShouldNotHappenException;
 use Rector\Core\PhpParser\Builder\MethodBuilder;
 use Rector\Core\PhpParser\Node\Manipulator\ClassInsertManipulator;
@@ -37,6 +37,11 @@ use Rector\RemovingStatic\ValueObject\PHPUnitClass;
  */
 final class PHPUnitStaticToKernelTestCaseGetRector extends AbstractRector implements ConfigurableRectorInterface
 {
+    /**
+     * @var string
+     */
+    public const STATIC_CLASS_TYPES = '$staticClassTypes';
+
     /**
      * @var string
      */
@@ -66,16 +71,13 @@ final class PHPUnitStaticToKernelTestCaseGetRector extends AbstractRector implem
      * @var ClassInsertManipulator
      */
     private $classInsertManipulator;
-    /**
-     * @var string
-     */
-    public const STATIC_CLASS_TYPES = '$staticClassTypes';
 
-    /**
-     * @param string[] $staticClassTypes
-     */
-    public function __construct(PropertyNaming $propertyNaming, ClassInsertManipulator $classInsertManipulator, PHPUnitTypeDeclarationDecorator $phpUnitTypeDeclarationDecorator)
-    {
+
+    public function __construct(
+        PropertyNaming $propertyNaming,
+        ClassInsertManipulator $classInsertManipulator,
+        PHPUnitTypeDeclarationDecorator $phpUnitTypeDeclarationDecorator
+    ) {
         $this->propertyNaming = $propertyNaming;
         $this->phpUnitTypeDeclarationDecorator = $phpUnitTypeDeclarationDecorator;
         $this->classInsertManipulator = $classInsertManipulator;

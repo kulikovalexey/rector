@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Rector\Generic\Rector\Function_;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\ConfiguredCodeSample;
 use Rector\Core\RectorDefinition\RectorDefinition;
@@ -17,14 +17,14 @@ use Rector\Core\RectorDefinition\RectorDefinition;
 final class FunctionToStaticCallRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
-     * @var string[]
-     */
-    private $functionToStaticCall = [];
-
-    /**
      * @var string
      */
     public const FUNCTION_TO_STATIC_CALL = '$functionToStaticCall';
+
+    /**
+     * @var string[]
+     */
+    private $functionToStaticCall = [];
 
     public function getDefinition(): RectorDefinition
     {

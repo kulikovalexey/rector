@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Rector\Generic\Rector\ClassMethod;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\ClassMethod;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\ConfiguredCodeSample;
 use Rector\Core\RectorDefinition\RectorDefinition;
@@ -17,6 +17,11 @@ use Rector\Core\RectorDefinition\RectorDefinition;
 final class AddReturnTypeDeclarationRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
+     * @var string
+     */
+    public const TYPEHINT_FOR_METHOD_BY_CLASS = '$typehintForMethodByClass';
+
+    /**
      * class => [
      *      method => typehting
      * ]
@@ -24,11 +29,6 @@ final class AddReturnTypeDeclarationRector extends AbstractRector implements Con
      * @var string[][]
      */
     private $typehintForMethodByClass = [];
-
-    /**
-     * @var string
-     */
-    public const TYPEHINT_FOR_METHOD_BY_CLASS = '$typehintForMethodByClass';
 
     public function getDefinition(): RectorDefinition
     {

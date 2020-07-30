@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Rector\CakePHP\Rector\MethodCall;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Identifier;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\CodeSample;
 use Rector\Core\RectorDefinition\RectorDefinition;
@@ -20,6 +20,11 @@ use Rector\Core\RectorDefinition\RectorDefinition;
  */
 final class ModalToGetSetRector extends AbstractRector implements ConfigurableRectorInterface
 {
+    /**
+     * @var string
+     */
+    public const METHOD_NAMES_BY_TYPES = '$methodNamesByTypes';
+
     /**
      * @var string
      */
@@ -39,11 +44,6 @@ final class ModalToGetSetRector extends AbstractRector implements ConfigurableRe
      * @var mixed[]
      */
     private $methodNamesByTypes = [];
-
-    /**
-     * @var string
-     */
-    public const METHOD_NAMES_BY_TYPES = '$methodNamesByTypes';
 
     public function getDefinition(): RectorDefinition
     {

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Rector\Php74\Rector\Function_;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\Function_;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\CodeSample;
 use Rector\Core\RectorDefinition\RectorDefinition;
@@ -21,14 +21,14 @@ use Rector\Core\RectorDefinition\RectorDefinition;
 final class ReservedFnFunctionRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
-     * @var string[]
-     */
-    private $reservedNamesToNewOnes = [];
-
-    /**
      * @var string
      */
     public const RESERVED_NAMES_TO_NEW_ONES = '$reservedNamesToNewOnes';
+
+    /**
+     * @var string[]
+     */
+    private $reservedNamesToNewOnes = [];
 
     public function getDefinition(): RectorDefinition
     {

@@ -15,14 +15,14 @@ use Symplify\SmartFileSystem\SmartFileInfo;
 final class RemoveProjectFileRector extends AbstractFileSystemRector implements ConfigurableRectorInterface
 {
     /**
-     * @var string[]
-     */
-    private $filePathsToRemove = [];
-
-    /**
      * @var string
      */
     public const FILE_PATHS_TO_REMOVE = '$filePathsToRemove';
+
+    /**
+     * @var string[]
+     */
+    private $filePathsToRemove = [];
 
     public function refactor(SmartFileInfo $smartFileInfo): void
     {

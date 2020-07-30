@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Rector\Generic\Rector\Argument;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Nette\Utils\Strings;
 use PhpParser\BuilderHelpers;
 use PhpParser\Node;
@@ -12,6 +11,7 @@ use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\StaticCall;
 use PhpParser\Node\Stmt\ClassMethod;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\ConfiguredCodeSample;
 use Rector\Core\RectorDefinition\RectorDefinition;
@@ -21,6 +21,11 @@ use Rector\Core\RectorDefinition\RectorDefinition;
  */
 final class ArgumentDefaultValueReplacerRector extends AbstractRector implements ConfigurableRectorInterface
 {
+    /**
+     * @var string
+     */
+    public const REPLACES_BY_METHOD_AND_TYPES = '$replacesByMethodAndTypes';
+
     /**
      * @var string
      */
@@ -35,11 +40,6 @@ final class ArgumentDefaultValueReplacerRector extends AbstractRector implements
      * @var mixed[]
      */
     private $replacesByMethodAndTypes = [];
-
-    /**
-     * @var string
-     */
-    public const REPLACES_BY_METHOD_AND_TYPES = '$replacesByMethodAndTypes';
 
     public function getDefinition(): RectorDefinition
     {

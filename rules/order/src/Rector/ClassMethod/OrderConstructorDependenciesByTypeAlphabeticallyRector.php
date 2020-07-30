@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Rector\Order\Rector\ClassMethod;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
@@ -12,6 +11,7 @@ use PhpParser\Node\NullableType;
 use PhpParser\Node\Param;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\UnionType;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\CodeSample;
 use Rector\Core\RectorDefinition\RectorDefinition;
@@ -24,14 +24,14 @@ use Symplify\SmartFileSystem\SmartFileInfo;
 final class OrderConstructorDependenciesByTypeAlphabeticallyRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
-     * @var array
-     */
-    private $skipPatterns = [];
-
-    /**
      * @var string
      */
     public const SKIP_PATTERNS = '$skipPatterns';
+
+    /**
+     * @var array
+     */
+    private $skipPatterns = [];
 
     public function getDefinition(): RectorDefinition
     {

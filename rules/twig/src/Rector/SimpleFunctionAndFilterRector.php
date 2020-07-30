@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Rector\Twig\Rector;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\Array_;
@@ -15,14 +14,11 @@ use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt\Return_;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\CodeSample;
 use Rector\Core\RectorDefinition\RectorDefinition;
 use Rector\NodeTypeResolver\Node\AttributeKey;
-use Twig_Filter_Method;
-use Twig_Function_Method;
-use Twig_SimpleFilter;
-use Twig_SimpleFunction;
 
 /**
  * Covers https://twig.symfony.com/doc/1.x/deprecated.html#function
@@ -32,14 +28,14 @@ use Twig_SimpleFunction;
 final class SimpleFunctionAndFilterRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
-     * @var string[]
-     */
-    private $oldToNewClasses = [];
-
-    /**
      * @var string
      */
     public const OLD_TO_NEW_CLASSES = '$oldToNewClasses';
+
+    /**
+     * @var string[]
+     */
+    private $oldToNewClasses = [];
 
     public function getDefinition(): RectorDefinition
     {

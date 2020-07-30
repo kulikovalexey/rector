@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Rector\Php55\Rector\String_;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Name\FullyQualified;
 use PhpParser\Node\Scalar\String_;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\CodeSample;
 use Rector\Core\RectorDefinition\RectorDefinition;
@@ -27,6 +27,11 @@ use ReflectionClass;
 final class StringClassNameToClassConstantRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
+     * @var string
+     */
+    public const CLASSES_TO_SKIP = '$classesToSkip';
+
+    /**
      * @var string[]
      */
     private $classesToSkip = [];
@@ -40,11 +45,6 @@ final class StringClassNameToClassConstantRector extends AbstractRector implemen
      * @var string[]
      */
     private $sensitiveNonExistingClasses = [];
-
-    /**
-     * @var string
-     */
-    public const CLASSES_TO_SKIP = '$classesToSkip';
 
     public function getDefinition(): RectorDefinition
     {

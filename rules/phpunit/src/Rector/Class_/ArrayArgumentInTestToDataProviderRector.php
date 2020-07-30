@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Rector\PHPUnit\Rector\Class_;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\Array_;
@@ -22,6 +21,7 @@ use PHPStan\Type\UnionType;
 use Rector\AttributeAwarePhpDoc\Ast\PhpDoc\AttributeAwareParamTagValueNode;
 use Rector\AttributeAwarePhpDoc\Ast\PhpDoc\AttributeAwarePhpDocTagNode;
 use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfo;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Exception\ShouldNotHappenException;
 use Rector\Core\Rector\AbstractPHPUnitRector;
 use Rector\Core\RectorDefinition\ConfiguredCodeSample;
@@ -39,6 +39,11 @@ use Rector\PHPUnit\ValueObject\ParamAndArgValueObject;
  */
 final class ArrayArgumentInTestToDataProviderRector extends AbstractPHPUnitRector implements ConfigurableRectorInterface
 {
+    /**
+     * @var string
+     */
+    public const CONFIGURATION = '$configuration';
+
     /**
      * @var mixed[]
      */
@@ -58,14 +63,8 @@ final class ArrayArgumentInTestToDataProviderRector extends AbstractPHPUnitRecto
      * @var TypeFactory
      */
     private $typeFactory;
-    /**
-     * @var string
-     */
-    public const CONFIGURATION = '$configuration';
 
-    /**
-     * @param mixed[] $configuration
-     */
+
     public function __construct(
         DataProviderClassMethodFactory $dataProviderClassMethodFactory,
         TypeFactory $typeFactory

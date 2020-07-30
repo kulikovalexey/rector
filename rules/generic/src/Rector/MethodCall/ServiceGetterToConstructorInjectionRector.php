@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Rector\Generic\Rector\MethodCall;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\PropertyFetch;
@@ -12,6 +11,7 @@ use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Stmt\Class_;
 use PHPStan\Type\ObjectType;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\ConfiguredCodeSample;
 use Rector\Core\RectorDefinition\RectorDefinition;
@@ -25,6 +25,11 @@ use Rector\NodeTypeResolver\Node\AttributeKey;
 final class ServiceGetterToConstructorInjectionRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
+     * @var string
+     */
+    public const METHOD_NAMES_BY_TYPES_TO_SERVICE_TYPES = '$methodNamesByTypesToServiceTypes';
+
+    /**
      * @var mixed[]
      */
     private $methodNamesByTypesToServiceTypes = [];
@@ -33,14 +38,8 @@ final class ServiceGetterToConstructorInjectionRector extends AbstractRector imp
      * @var PropertyNaming
      */
     private $propertyNaming;
-    /**
-     * @var string
-     */
-    public const METHOD_NAMES_BY_TYPES_TO_SERVICE_TYPES = '$methodNamesByTypesToServiceTypes';
 
-    /**
-     * @param mixed[] $methodNamesByTypesToServiceTypes
-     */
+
     public function __construct(PropertyNaming $propertyNaming)
     {
         $this->propertyNaming = $propertyNaming;

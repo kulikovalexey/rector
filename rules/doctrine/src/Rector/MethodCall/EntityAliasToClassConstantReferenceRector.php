@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Rector\Doctrine\Rector\MethodCall;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Doctrine\Common\Persistence\ManagerRegistry as DeprecatedManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager as DeprecatedObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,6 +13,7 @@ use Nette\Utils\Strings;
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Scalar\String_;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\CodeSample;
 use Rector\Core\RectorDefinition\RectorDefinition;
@@ -23,6 +23,11 @@ use Rector\Core\RectorDefinition\RectorDefinition;
  */
 final class EntityAliasToClassConstantReferenceRector extends AbstractRector implements ConfigurableRectorInterface
 {
+    /**
+     * @var string
+     */
+    public const ALIASES_TO_NAMESPACES = '$aliasesToNamespaces';
+
     /**
      * @var string[]
      */
@@ -38,11 +43,6 @@ final class EntityAliasToClassConstantReferenceRector extends AbstractRector imp
      * @var string[]
      */
     private $aliasesToNamespaces = [];
-
-    /**
-     * @var string
-     */
-    public const ALIASES_TO_NAMESPACES = '$aliasesToNamespaces';
 
     public function getDefinition(): RectorDefinition
     {

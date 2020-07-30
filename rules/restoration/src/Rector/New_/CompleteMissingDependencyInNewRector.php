@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Rector\Restoration\Rector\New_;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\New_;
 use PhpParser\Node\Name\FullyQualified;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\ConfiguredCodeSample;
 use Rector\Core\RectorDefinition\RectorDefinition;
@@ -24,14 +24,14 @@ use ReflectionParameter;
 final class CompleteMissingDependencyInNewRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
-     * @var string[]
-     */
-    private $classToInstantiateByType = [];
-
-    /**
      * @var string
      */
     public const CLASS_TO_INSTANTIATE_BY_TYPE = '$classToInstantiateByType';
+
+    /**
+     * @var string[]
+     */
+    private $classToInstantiateByType = [];
 
     public function getDefinition(): RectorDefinition
     {

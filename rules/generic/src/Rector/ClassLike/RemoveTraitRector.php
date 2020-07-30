@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Rector\Generic\Rector\ClassLike;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\Trait_;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\PhpParser\Node\Manipulator\ClassManipulator;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\CodeSample;
@@ -20,6 +20,11 @@ use Rector\NodeTypeResolver\Node\AttributeKey;
  */
 final class RemoveTraitRector extends AbstractRector implements ConfigurableRectorInterface
 {
+    /**
+     * @var string
+     */
+    public const TRAITS_TO_REMOVE = '$traitsToRemove';
+
     /**
      * @var bool
      */
@@ -34,14 +39,8 @@ final class RemoveTraitRector extends AbstractRector implements ConfigurableRect
      * @var ClassManipulator
      */
     private $classManipulator;
-    /**
-     * @var string
-     */
-    public const TRAITS_TO_REMOVE = '$traitsToRemove';
 
-    /**
-     * @param string[] $traitsToRemove
-     */
+
     public function __construct(ClassManipulator $classManipulator)
     {
         $this->classManipulator = $classManipulator;

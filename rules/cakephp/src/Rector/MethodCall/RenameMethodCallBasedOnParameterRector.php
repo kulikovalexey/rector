@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Rector\CakePHP\Rector\MethodCall;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Scalar\String_;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\ConfiguredCodeSample;
 use Rector\Core\RectorDefinition\RectorDefinition;
@@ -23,6 +23,11 @@ final class RenameMethodCallBasedOnParameterRector extends AbstractRector implem
     /**
      * @var string
      */
+    public const METHOD_NAMES_BY_TYPES = '$methodNamesByTypes';
+
+    /**
+     * @var string
+     */
     private const MATCH_PARAMETER = 'match_parameter';
 
     /**
@@ -34,11 +39,6 @@ final class RenameMethodCallBasedOnParameterRector extends AbstractRector implem
      * @var mixed[]
      */
     private $methodNamesByTypes = [];
-
-    /**
-     * @var string
-     */
-    public const METHOD_NAMES_BY_TYPES = '$methodNamesByTypes';
 
     public function getDefinition(): RectorDefinition
     {

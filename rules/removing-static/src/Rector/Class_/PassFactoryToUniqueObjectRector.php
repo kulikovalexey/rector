@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Rector\RemovingStatic\Rector\Class_;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\PropertyFetch;
 use PhpParser\Node\Expr\StaticCall;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Stmt\Class_;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\ConfiguredCodeSample;
 use Rector\Core\RectorDefinition\RectorDefinition;
@@ -26,6 +26,11 @@ use Rector\RemovingStatic\UniqueObjectOrServiceDetector;
  */
 final class PassFactoryToUniqueObjectRector extends AbstractRector implements ConfigurableRectorInterface
 {
+    /**
+     * @var string
+     */
+    public const TYPES_TO_SERVICES = '$typesToServices';
+
     /**
      * @var string[]
      */
@@ -55,14 +60,8 @@ final class PassFactoryToUniqueObjectRector extends AbstractRector implements Co
      * @var StaticTypesInClassResolver
      */
     private $staticTypesInClassResolver;
-    /**
-     * @var string
-     */
-    public const TYPES_TO_SERVICES = '$typesToServices';
 
-    /**
-     * @param string[] $typesToServices
-     */
+
     public function __construct(
         StaticTypesInClassResolver $staticTypesInClassResolver,
         PropertyNaming $propertyNaming,

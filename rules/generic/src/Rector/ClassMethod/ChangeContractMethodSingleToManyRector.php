@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Rector\Generic\Rector\ClassMethod;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Stmt\Class_;
@@ -13,6 +12,7 @@ use PhpParser\Node\Stmt\Return_;
 use PHPStan\Type\ArrayType;
 use PHPStan\Type\MixedType;
 use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfo;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\ConfiguredCodeSample;
 use Rector\Core\RectorDefinition\RectorDefinition;
@@ -24,14 +24,14 @@ use Rector\NodeTypeResolver\Node\AttributeKey;
 final class ChangeContractMethodSingleToManyRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
-     * @var mixed[]
-     */
-    private $oldToNewMethodByType = [];
-
-    /**
      * @var string
      */
     public const OLD_TO_NEW_METHOD_BY_TYPE = '$oldToNewMethodByType';
+
+    /**
+     * @var mixed[]
+     */
+    private $oldToNewMethodByType = [];
 
     public function getDefinition(): RectorDefinition
     {

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Rector\Php71\Rector\Name;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\Namespace_;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\CodeSample;
 use Rector\Core\RectorDefinition\RectorDefinition;
@@ -22,14 +22,14 @@ use Rector\NodeTypeResolver\Node\AttributeKey;
 final class ReservedObjectRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
-     * @var string[]
-     */
-    private $reservedKeywordsToReplacements = [];
-
-    /**
      * @var string
      */
     public const RESERVED_KEYWORDS_TO_REPLACEMENTS = '$reservedKeywordsToReplacements';
+
+    /**
+     * @var string[]
+     */
+    private $reservedKeywordsToReplacements = [];
 
     public function getDefinition(): RectorDefinition
     {

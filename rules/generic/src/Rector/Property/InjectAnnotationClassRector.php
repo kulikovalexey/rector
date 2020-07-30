@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Rector\Generic\Rector\Property;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use DI\Annotation\Inject as PHPDIInject;
 use JMS\DiExtraBundle\Annotation\Inject as JMSInject;
 use Nette\Utils\Strings;
@@ -19,6 +18,7 @@ use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfo;
 use Rector\BetterPhpDocParser\PhpDocNode\JMS\JMSInjectTagValueNode;
 use Rector\BetterPhpDocParser\PhpDocNode\PHPDI\PHPDIInjectTagValueNode;
 use Rector\ChangesReporting\Application\ErrorAndDiffCollector;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Exception\NotImplementedException;
 use Rector\Core\Exception\ShouldNotHappenException;
 use Rector\Core\Rector\AbstractRector;
@@ -35,6 +35,11 @@ use Symplify\SmartFileSystem\SmartFileInfo;
  */
 final class InjectAnnotationClassRector extends AbstractRector implements ConfigurableRectorInterface
 {
+    /**
+     * @var string
+     */
+    public const ANNOTATION_CLASSES = '$annotationClasses';
+
     /**
      * @var string[]
      */
@@ -57,14 +62,8 @@ final class InjectAnnotationClassRector extends AbstractRector implements Config
      * @var ServiceMapProvider
      */
     private $serviceMapProvider;
-    /**
-     * @var string
-     */
-    public const ANNOTATION_CLASSES = '$annotationClasses';
 
-    /**
-     * @param string[] $annotationClasses
-     */
+
     public function __construct(
         ServiceMapProvider $serviceMapProvider,
         ErrorAndDiffCollector $errorAndDiffCollector

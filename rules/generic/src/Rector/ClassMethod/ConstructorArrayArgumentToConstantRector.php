@@ -142,7 +142,7 @@ PHP
         $class->implements = array_unique($class->implements);
     }
 
-    private function removeClassMethodIfEmpty(ClassMethod $classMethod)
+    private function removeClassMethodIfEmpty(ClassMethod $classMethod): void
     {
         if (count($classMethod->params) > 0) {
             return;

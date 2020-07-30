@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Rector\TypeDeclaration\Rector\ClassMethod;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Param;
 use PhpParser\Node\Stmt\Class_;
@@ -12,6 +11,7 @@ use PhpParser\Node\Stmt\ClassLike;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Interface_;
 use PhpParser\Node\Stmt\Trait_;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\ConfiguredCodeSample;
 use Rector\Core\RectorDefinition\RectorDefinition;
@@ -23,14 +23,14 @@ use Rector\NodeTypeResolver\Node\AttributeKey;
 final class AddParamTypeDeclarationRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
-     * @var mixed[]
-     */
-    private $typehintForParameterByMethodByClass = [];
-
-    /**
      * @var string
      */
     public const TYPEHINT_FOR_PARAMETER_BY_METHOD_BY_CLASS = '$typehintForParameterByMethodByClass';
+
+    /**
+     * @var mixed[]
+     */
+    private $typehintForParameterByMethodByClass = [];
 
     public function getDefinition(): RectorDefinition
     {

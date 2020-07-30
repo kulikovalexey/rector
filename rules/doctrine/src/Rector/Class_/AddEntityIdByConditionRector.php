@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Rector\Doctrine\Rector\Class_;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\PhpParser\Node\Manipulator\ClassInsertManipulator;
 use Rector\Core\PhpParser\Node\Manipulator\ClassManipulator;
 use Rector\Core\Rector\AbstractRector;
@@ -19,6 +19,11 @@ use Rector\Doctrine\NodeFactory\EntityIdNodeFactory;
  */
 final class AddEntityIdByConditionRector extends AbstractRector implements ConfigurableRectorInterface
 {
+    /**
+     * @var string
+     */
+    public const DETECTED_TRAITS = '$detectedTraits';
+
     /**
      * @var string[]
      */
@@ -38,16 +43,13 @@ final class AddEntityIdByConditionRector extends AbstractRector implements Confi
      * @var ClassInsertManipulator
      */
     private $classInsertManipulator;
-    /**
-     * @var string
-     */
-    public const DETECTED_TRAITS = '$detectedTraits';
 
-    /**
-     * @param string[] $detectedTraits
-     */
-    public function __construct(ClassManipulator $classManipulator, EntityIdNodeFactory $entityIdNodeFactory, ClassInsertManipulator $classInsertManipulator)
-    {
+
+    public function __construct(
+        ClassManipulator $classManipulator,
+        EntityIdNodeFactory $entityIdNodeFactory,
+        ClassInsertManipulator $classInsertManipulator
+    ) {
         $this->classManipulator = $classManipulator;
         $this->entityIdNodeFactory = $entityIdNodeFactory;
         $this->classInsertManipulator = $classInsertManipulator;

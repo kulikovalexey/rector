@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Rector\MagicDisclosure\Rector\String_;
 
-use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Cast\String_;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Identifier;
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Rector\AbstractRector;
 use Rector\Core\RectorDefinition\ConfiguredCodeSample;
 use Rector\Core\RectorDefinition\RectorDefinition;
@@ -19,14 +19,14 @@ use Rector\Core\RectorDefinition\RectorDefinition;
 final class ToStringToMethodCallRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
-     * @var string[]
-     */
-    private $methodNamesByType = [];
-
-    /**
      * @var string
      */
     public const METHOD_NAMES_BY_TYPE = '$methodNamesByType';
+
+    /**
+     * @var string[]
+     */
+    private $methodNamesByType = [];
 
     public function getDefinition(): RectorDefinition
     {
