@@ -57,7 +57,6 @@ final class DefluentMethodCallRector extends AbstractRector implements Configura
      */
     private $nonFluentMethodCallFactory;
 
-
     public function __construct(
         ChainMethodCallNodeAnalyzer $chainMethodCallNodeAnalyzer,
         ChainMethodCallRootExtractor $chainMethodCallRootExtractor,

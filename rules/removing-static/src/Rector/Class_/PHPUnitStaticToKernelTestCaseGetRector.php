@@ -72,7 +72,6 @@ final class PHPUnitStaticToKernelTestCaseGetRector extends AbstractRector implem
      */
     private $classInsertManipulator;
 
-
     public function __construct(
         PropertyNaming $propertyNaming,
         ClassInsertManipulator $classInsertManipulator,

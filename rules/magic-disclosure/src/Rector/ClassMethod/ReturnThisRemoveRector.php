@@ -38,7 +38,6 @@ final class ReturnThisRemoveRector extends AbstractRector implements Configurabl
      */
     private $classNameTypeMatcher;
 
-
     public function __construct(ClassNameTypeMatcher $classNameTypeMatcher)
     {
         $this->classNameTypeMatcher = $classNameTypeMatcher;

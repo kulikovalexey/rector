@@ -33,7 +33,6 @@ final class AddInterfaceByTraitRector extends AbstractRector implements Configur
      */
     private $classManipulator;
 
-
     public function __construct(ClassManipulator $classManipulator)
     {
         $this->classManipulator = $classManipulator;

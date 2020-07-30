@@ -41,10 +41,10 @@ final class CompleteImportForPartialAnnotationRector extends AbstractRector impl
      */
     private $useImportsToRestore = [];
 
-
     public function __construct()
     {
-        $this->useImportsToRestore = array_merge($useImportsToRestore, self::DEFAULT_IMPORTS_TO_RESTORE);
+        // @todo
+//        $this->useImportsToRestore = array_merge($useImportsToRestore, self::DEFAULT_IMPORTS_TO_RESTORE);
     }
 
     public function getDefinition(): RectorDefinition

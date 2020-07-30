@@ -45,7 +45,6 @@ final class StaticTypeToSetterInjectionRector extends AbstractRector implements 
      */
     private $propertyNaming;
 
-
     public function __construct(PropertyNaming $propertyNaming)
     {
         $this->propertyNaming = $propertyNaming;

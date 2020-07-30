@@ -61,7 +61,6 @@ final class MoveValueObjectsToValueObjectDirectoryRector extends AbstractFileMov
      */
     private $enableValueObjectGuessing = true;
 
-
     public function __construct(ClassAnalyzer $classAnalyzer, bool $enableValueObjectGuessing = true)
     {
         $this->classAnalyzer = $classAnalyzer;

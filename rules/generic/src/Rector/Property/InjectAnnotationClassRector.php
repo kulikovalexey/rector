@@ -63,7 +63,6 @@ final class InjectAnnotationClassRector extends AbstractRector implements Config
      */
     private $serviceMapProvider;
 
-
     public function __construct(
         ServiceMapProvider $serviceMapProvider,
         ErrorAndDiffCollector $errorAndDiffCollector

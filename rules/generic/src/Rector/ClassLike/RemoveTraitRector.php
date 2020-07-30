@@ -40,7 +40,6 @@ final class RemoveTraitRector extends AbstractRector implements ConfigurableRect
      */
     private $classManipulator;
 
-
     public function __construct(ClassManipulator $classManipulator)
     {
         $this->classManipulator = $classManipulator;
