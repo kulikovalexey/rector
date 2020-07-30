@@ -88,6 +88,11 @@ PHP
         $this->printNodesToFilePath($nodes, $smartFileInfo->getRelativeFilePath());
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->match = $configuration[self::MATCH] ?? [];
+    }
+
     /**
      * Match file against matches, no patterns provided, then it matches
      */

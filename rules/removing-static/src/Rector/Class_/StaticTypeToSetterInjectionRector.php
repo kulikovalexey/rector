@@ -128,6 +128,11 @@ PHP
         return null;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->staticTypes = $configuration[self::STATIC_TYPES] ?? [];
+    }
+
     private function processClass(Class_ $class): Class_
     {
         foreach ($this->staticTypes as $implements => $staticType) {

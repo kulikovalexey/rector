@@ -96,4 +96,9 @@ PHP
 
         return null;
     }
+
+    public function configure(array $configuration): void
+    {
+        $this->reservedNamesToNewOnes = $configuration[self::RESERVED_NAMES_TO_NEW_ONES] ?? [];
+    }
 }

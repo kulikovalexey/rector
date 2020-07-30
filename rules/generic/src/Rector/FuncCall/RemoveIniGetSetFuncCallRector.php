@@ -102,4 +102,9 @@ CODE_SAMPLE
 
         return null;
     }
+
+    public function configure(array $configuration): void
+    {
+        $this->keysToRemove = $configuration[self::KEYS_TO_REMOVE] ?? [];
+    }
 }

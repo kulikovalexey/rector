@@ -84,4 +84,9 @@ PHP
 
         return $this->processMethodCallNode($node);
     }
+
+    public function configure(array $configuration): void
+    {
+        $this->getMethodAwareTypes = $configuration[self::GET_METHOD_AWARE_TYPES] ?? [];
+    }
 }

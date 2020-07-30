@@ -72,4 +72,9 @@ PHP
 
         return $node;
     }
+
+    public function configure(array $configuration): void
+    {
+        $this->interfacesToRemove = $configuration[self::INTERFACES_TO_REMOVE] ?? [];
+    }
 }

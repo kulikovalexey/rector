@@ -132,6 +132,11 @@ PHP
         return $node;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->oldToNewClasses = $configuration[self::OLD_TO_NEW_CLASSES] ?? [];
+    }
+
     private function processArrayItem(ArrayItem $arrayItem, Type $newNodeType): ArrayItem
     {
         foreach ($this->oldToNewClasses as $oldClass => $newClass) {

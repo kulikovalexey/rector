@@ -110,6 +110,11 @@ PHP
         return $node;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->detectedTraits = $configuration[self::DETECTED_TRAITS] ?? [];
+    }
+
     private function shouldSkip(Class_ $class): bool
     {
         if ($this->isAnonymousClass($class)) {

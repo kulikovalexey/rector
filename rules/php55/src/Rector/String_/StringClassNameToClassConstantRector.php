@@ -121,6 +121,11 @@ PHP
         return new ClassConstFetch($fullyQualified, 'class');
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->classesToSkip = $configuration[self::CLASSES_TO_SKIP] ?? [];
+    }
+
     private function classLikeSensitiveExists(string $classLikeName): bool
     {
         if (! ClassExistenceStaticHelper::doesClassLikeExist($classLikeName)) {

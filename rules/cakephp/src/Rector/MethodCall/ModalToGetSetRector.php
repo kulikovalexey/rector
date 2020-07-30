@@ -99,6 +99,11 @@ PHP
         return $node;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->methodNamesByTypes = $configuration[self::METHOD_NAMES_BY_TYPES] ?? [];
+    }
+
     /**
      * @return string[]
      */

@@ -109,6 +109,11 @@ PHP
         return $node;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->oldToNewMethodByType = $configuration[self::OLD_TO_NEW_METHOD_BY_TYPE] ?? [];
+    }
+
     private function wrapReturnValueToArray(ClassMethod $classMethod): void
     {
         $this->traverseNodesWithCallable((array) $classMethod->stmts, function (Node $node) {

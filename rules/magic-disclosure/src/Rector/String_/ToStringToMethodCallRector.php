@@ -73,6 +73,11 @@ PHP
         return $this->processMethodCall($node);
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->methodNamesByType = $configuration[self::METHOD_NAMES_BY_TYPE] ?? [];
+    }
+
     private function processStringNode(String_ $string): ?Node
     {
         foreach ($this->methodNamesByType as $type => $methodName) {

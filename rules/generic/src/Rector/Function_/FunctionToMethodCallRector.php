@@ -72,4 +72,9 @@ final class FunctionToMethodCallRector extends AbstractRector implements Configu
 
         return $this->createMethodCall($variableName, $methodName, $node->args);
     }
+
+    public function configure(array $configuration): void
+    {
+        $this->functionToMethodCall = $configuration[self::FUNCTION_TO_METHOD_CALL] ?? [];
+    }
 }

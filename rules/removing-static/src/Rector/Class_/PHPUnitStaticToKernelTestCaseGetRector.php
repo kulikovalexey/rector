@@ -157,6 +157,11 @@ PHP
         return $this->processStaticCall($node);
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->staticClassTypes = $configuration[self::STATIC_CLASS_TYPES] ?? [];
+    }
+
     private function processClass(Class_ $class): ?Class_
     {
         if ($this->isObjectType($class, PHPUnitClass::TEST_CASE)) {

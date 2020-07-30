@@ -117,6 +117,11 @@ PHP
         return $node;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->classToInstantiateByType = $configuration[self::CLASS_TO_INSTANTIATE_BY_TYPE] ?? [];
+    }
+
     private function shouldSkipNew(New_ $new): bool
     {
         $constructorMethodReflection = $this->getNewNodeClassConstructorMethodReflection($new);

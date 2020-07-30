@@ -154,6 +154,11 @@ PHP
         return null;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->annotationClasses = $configuration[self::ANNOTATION_CLASSES] ?? [];
+    }
+
     private function ensureAnnotationClassIsSupported(string $annotationClass): void
     {
         if (isset(self::ANNOTATION_TO_TAG_CLASS[$annotationClass])) {

@@ -41,12 +41,6 @@ final class CompleteImportForPartialAnnotationRector extends AbstractRector impl
      */
     private $useImportsToRestore = [];
 
-    public function __construct()
-    {
-        // @todo
-//        $this->useImportsToRestore = array_merge($useImportsToRestore, self::DEFAULT_IMPORTS_TO_RESTORE);
-    }
-
     public function getDefinition(): RectorDefinition
     {
         return new RectorDefinition('In case you have accidentally removed use imports but code still contains partial use statements, this will save you', [
@@ -122,6 +116,14 @@ PHP
         }
 
         return $node;
+    }
+
+    public function configure(array $configuration): void
+    {
+        $this->useImportsToRestore = array_merge(
+            $configuration[self::USE_IMPORTS_TO_RESTORE] ?? [],
+            self::DEFAULT_IMPORTS_TO_RESTORE
+        );
     }
 
     private function addImportToNamespaceIfMissing(Namespace_ $namespace, string $import, string $alias): Namespace_

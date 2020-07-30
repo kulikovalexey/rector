@@ -89,6 +89,11 @@ PHP
         return $node;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->skipPatterns = $configuration[self::SKIP_PATTERNS] ?? [];
+    }
+
     /**
      * @return Param[]
      */

@@ -85,6 +85,11 @@ PHP
         return $node;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->oldToNewInterfaces = $configuration[self::OLD_TO_NEW_INTERFACES] ?? [];
+    }
+
     private function makeImplementsUnique(Class_ $class): void
     {
         $alreadyAddedNames = [];

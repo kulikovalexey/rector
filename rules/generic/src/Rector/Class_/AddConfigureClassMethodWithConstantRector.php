@@ -8,12 +8,14 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Expr\ArrayDimFetch;
 use PhpParser\Node\Expr\Assign;
+use PhpParser\Node\Expr\BinaryOp\Coalesce;
 use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Expr\PropertyFetch;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Param;
 use PhpParser\Node\Stmt\Class_;
+use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Expression;
 use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Rector\AbstractRector;
@@ -98,7 +100,7 @@ PHP
         foreach ($constantNameToPropertyName as $constantName => $propertyName) {
             $classConstFetch = new ClassConstFetch(new Identifier('self'), $constantName);
             $arrayDimFetch = new ArrayDimFetch(new Variable('configuration'), $classConstFetch);
-            $coalesce = new Node\Expr\BinaryOp\Coalesce($arrayDimFetch, new Array_());
+            $coalesce = new Coalesce($arrayDimFetch, new Array_());
 
             $assign = new Assign(new PropertyFetch(new Variable('this'), $propertyName), $coalesce);
 
@@ -113,7 +115,7 @@ PHP
         return $node;
     }
 
-    private function createConfigureClassMethod(): Node\Stmt\ClassMethod
+    private function createConfigureClassMethod(): ClassMethod
     {
         $configureClassMethod = $this->nodeFactory->createPublicMethod('configure');
         $configureClassMethod->returnType = new Identifier('void');

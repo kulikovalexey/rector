@@ -57,6 +57,11 @@ CODE_SAMPLE
         ]);
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->filePathsToRemove = $configuration[self::FILE_PATHS_TO_REMOVE] ?? [];
+    }
+
     private function getProjectDirectory(): string
     {
         $this->ensureProjectDirectoryIsSet();

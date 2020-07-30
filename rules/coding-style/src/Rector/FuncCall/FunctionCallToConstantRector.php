@@ -96,4 +96,9 @@ EOS
 
         return new ConstFetch(new Name($this->functionsToConstants[$functionName]));
     }
+
+    public function configure(array $configuration): void
+    {
+        $this->functionsToConstants = $configuration[self::FUNCTIONS_TO_CONSTANTS] ?? [];
+    }
 }

@@ -133,6 +133,12 @@ CODE_SAMPLE
         $this->processNodesWithFileDestination($nodesWithFileDestination);
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->types = $configuration[self::TYPES] ?? [];
+        $this->suffixes = $configuration[self::SUFFIXES] ?? [];
+    }
+
     private function isValueObjectMatch(Class_ $class): bool
     {
         if ($this->isSuffixMatch($class)) {

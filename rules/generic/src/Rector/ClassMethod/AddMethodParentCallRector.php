@@ -108,6 +108,11 @@ PHP
         return null;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->methodsByParentTypes = $configuration[self::METHODS_BY_PARENT_TYPES] ?? [];
+    }
+
     private function shouldSkipMethod(ClassMethod $classMethod, string $method): bool
     {
         if (! $this->isName($classMethod, $method)) {

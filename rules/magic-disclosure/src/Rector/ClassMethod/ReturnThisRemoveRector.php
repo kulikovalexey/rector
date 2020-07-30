@@ -123,6 +123,11 @@ PHP
         return null;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->classesToDefluent = $configuration[self::CLASSES_TO_DEFLUENT] ?? [];
+    }
+
     /**
      * Matches only 1st level "return $this;"
      */

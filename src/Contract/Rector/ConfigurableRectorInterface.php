@@ -6,8 +6,8 @@ namespace Rector\Core\Contract\Rector;
 
 interface ConfigurableRectorInterface
 {
-//    /**
-//     * @param mixed[] $configuration
-//     */
-//    public function configure(array $configuration): void;
+    /**
+     * @param mixed[] $configuration
+     */
+    public function configure(array $configuration): void;
 }

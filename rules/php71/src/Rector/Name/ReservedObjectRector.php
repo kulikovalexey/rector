@@ -69,6 +69,11 @@ PHP
         return $this->processName($node);
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->reservedKeywordsToReplacements = $configuration[self::RESERVED_KEYWORDS_TO_REPLACEMENTS] ?? [];
+    }
+
     private function processIdentifier(Identifier $identifier): Identifier
     {
         foreach ($this->reservedKeywordsToReplacements as $reservedKeyword => $replacement) {

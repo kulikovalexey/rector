@@ -136,6 +136,11 @@ PHP
         return $node;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->namesToDefluent = $configuration[self::NAMES_TO_DEFLUENT] ?? [];
+    }
+
     /**
      * @param MethodCall|Return_ $node
      */

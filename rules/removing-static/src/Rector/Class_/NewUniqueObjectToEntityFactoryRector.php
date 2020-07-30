@@ -166,6 +166,11 @@ PHP
         return $node;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->typesToServices = $configuration[self::TYPES_TO_SERVICES] ?? [];
+    }
+
     /**
      * @return string[]
      */

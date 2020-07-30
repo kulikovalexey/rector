@@ -74,6 +74,11 @@ PHP
         $this->processGroupNamesBySuffix($smartFileInfo, $nodes, $this->groupNamesBySuffix);
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->groupNamesBySuffix = $configuration[self::GROUP_NAMES_BY_SUFFIX] ?? [];
+    }
+
     /**
      * A. Match classes by suffix and move them to group namespace
      * E.g. App\Controller\SomeException → App\Exception\SomeException

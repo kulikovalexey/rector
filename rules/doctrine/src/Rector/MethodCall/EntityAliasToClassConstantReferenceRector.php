@@ -103,6 +103,11 @@ PHP
         return $node;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->aliasesToNamespaces = $configuration[self::ALIASES_TO_NAMESPACES] ?? [];
+    }
+
     private function isAliasWithConfiguredEntity(string $name): bool
     {
         return $this->isAlias($name) && $this->hasAlias($name);

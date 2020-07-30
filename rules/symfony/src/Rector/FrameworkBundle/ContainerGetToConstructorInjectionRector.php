@@ -94,4 +94,9 @@ PHP
 
         return $this->processMethodCallNode($node);
     }
+
+    public function configure(array $configuration): void
+    {
+        $this->containerAwareParentTypes = $configuration[self::CONTAINER_AWARE_PARENT_TYPES] ?? [];
+    }
 }

@@ -94,6 +94,11 @@ PHP
         return $node;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->traitsToRemove = $configuration[self::TRAITS_TO_REMOVE] ?? [];
+    }
+
     /**
      * @param Name[] $usedTraits
      */

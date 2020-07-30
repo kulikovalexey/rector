@@ -104,6 +104,11 @@ PHP
         return $node;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->replacesByMethodAndTypes = $configuration[self::REPLACES_BY_METHOD_AND_TYPES] ?? [];
+    }
+
     /**
      * @param MethodCall|StaticCall|ClassMethod $node
      * @param mixed[] $replaces

@@ -169,6 +169,11 @@ PHP
         return $node;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->configuration = $configuration[self::CONFIGURATION] ?? [];
+    }
+
     /**
      * @param mixed[] $configuration
      */

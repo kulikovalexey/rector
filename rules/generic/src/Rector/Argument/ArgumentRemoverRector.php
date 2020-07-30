@@ -91,6 +91,11 @@ PHP
         return $node;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->positionsByMethodNameByClassType = $configuration[self::POSITIONS_BY_METHOD_NAME_BY_CLASS_TYPE] ?? [];
+    }
+
     /**
      * @param ClassMethod|StaticCall|MethodCall $node
      * @param mixed[]|null $match

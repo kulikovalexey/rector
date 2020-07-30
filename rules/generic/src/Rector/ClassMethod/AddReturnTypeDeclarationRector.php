@@ -95,6 +95,11 @@ PHP
         return null;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->typehintForMethodByClass = $configuration[self::TYPEHINT_FOR_METHOD_BY_CLASS] ?? [];
+    }
+
     private function processClassMethodNodeWithTypehints(ClassMethod $classMethod, string $newType): void
     {
         // already set → no change

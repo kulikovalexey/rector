@@ -78,4 +78,9 @@ PHP
 
         return null;
     }
+
+    public function configure(array $configuration): void
+    {
+        $this->functionToNew = $configuration[self::FUNCTION_TO_NEW] ?? [];
+    }
 }

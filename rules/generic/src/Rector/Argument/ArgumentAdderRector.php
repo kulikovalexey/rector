@@ -127,6 +127,11 @@ PHP
         return $node;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->positionWithDefaultValueByMethodNamesByClassTypes = $configuration[self::POSITION_WITH_DEFAULT_VALUE_BY_METHOD_NAMES_BY_CLASS_TYPES] ?? [];
+    }
+
     /**
      * @param MethodCall|StaticCall|ClassMethod $node
      */

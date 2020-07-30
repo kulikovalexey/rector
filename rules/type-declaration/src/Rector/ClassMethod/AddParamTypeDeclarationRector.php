@@ -102,6 +102,11 @@ PHP
         return $node;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->typehintForParameterByMethodByClass = $configuration[self::TYPEHINT_FOR_PARAMETER_BY_METHOD_BY_CLASS] ?? [];
+    }
+
     private function shouldSkip(ClassMethod $classMethod): bool
     {
         // skip class methods without args

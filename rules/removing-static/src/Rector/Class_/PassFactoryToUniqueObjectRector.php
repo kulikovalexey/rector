@@ -185,6 +185,11 @@ PHP
         return $node;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->typesToServices = $configuration[self::TYPES_TO_SERVICES] ?? [];
+    }
+
     private function refactorClass(Class_ $class): Class_
     {
         $staticTypesInClass = $this->staticTypesInClassResolver->collectStaticCallTypeInClass(

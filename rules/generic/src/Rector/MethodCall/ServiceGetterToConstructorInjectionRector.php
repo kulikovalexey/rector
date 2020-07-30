@@ -167,4 +167,9 @@ PHP
 
         return $node;
     }
+
+    public function configure(array $configuration): void
+    {
+        $this->methodNamesByTypesToServiceTypes = $configuration[self::METHOD_NAMES_BY_TYPES_TO_SERVICE_TYPES] ?? [];
+    }
 }

@@ -100,6 +100,11 @@ PHP
         return $node;
     }
 
+    public function configure(array $configuration): void
+    {
+        $this->typeToPreference = $configuration[self::TYPE_TO_PREFERENCE] ?? [];
+    }
+
     private function ensurePreferenceIsValid(string $preference): void
     {
         $allowedPreferences = [self::PREFER_THIS, self::PREFER_SELF];

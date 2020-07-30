@@ -82,4 +82,9 @@ PHP
 
         return null;
     }
+
+    public function configure(array $configuration): void
+    {
+        $this->typeToStaticCalls = $configuration[self::TYPE_TO_STATIC_CALLS] ?? [];
+    }
 }
