@@ -20,7 +20,7 @@ final class ContainerGetToConstructorInjectionRector extends AbstractToConstruct
     /**
      * @var string
      */
-    public const CONTAINER_AWARE_PARENT_TYPES = '$containerAwareParentTypes';
+    private const CONTAINER_AWARE_PARENT_TYPES = '$containerAwareParentTypes';
 
     /**
      * @var string[]

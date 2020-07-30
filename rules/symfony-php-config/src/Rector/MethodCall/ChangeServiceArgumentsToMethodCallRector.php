@@ -151,11 +151,6 @@ PHP
         if (! $this->symfonyPhpConfigClosureAnalyzer->isPhpConfigClosure($closure)) {
             return true;
         }
-
-        if (! $this->isName($methodCall->name, 'set')) {
-            return true;
-        }
-
-        return false;
+        return ! $this->isName($methodCall->name, 'set');
     }
 }

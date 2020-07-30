@@ -26,7 +26,7 @@ final class CompleteMissingDependencyInNewRector extends AbstractRector implemen
     /**
      * @var string
      */
-    public const CLASS_TO_INSTANTIATE_BY_TYPE = '$classToInstantiateByType';
+    private const CLASS_TO_INSTANTIATE_BY_TYPE = '$classToInstantiateByType';
 
     /**
      * @var string[]

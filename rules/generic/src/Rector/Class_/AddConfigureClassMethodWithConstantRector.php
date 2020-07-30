@@ -79,7 +79,7 @@ PHP
         }
 
         // already added
-        if ($node->getMethod('configure')) {
+        if ($node->getMethod('configure') !== null) {
             return null;
         }
 

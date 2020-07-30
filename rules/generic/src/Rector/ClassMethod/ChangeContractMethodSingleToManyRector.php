@@ -26,7 +26,7 @@ final class ChangeContractMethodSingleToManyRector extends AbstractRector implem
     /**
      * @var string
      */
-    public const OLD_TO_NEW_METHOD_BY_TYPE = '$oldToNewMethodByType';
+    private const OLD_TO_NEW_METHOD_BY_TYPE = '$oldToNewMethodByType';
 
     /**
      * @var mixed[]

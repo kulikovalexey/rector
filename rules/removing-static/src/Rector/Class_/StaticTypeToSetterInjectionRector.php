@@ -33,7 +33,7 @@ final class StaticTypeToSetterInjectionRector extends AbstractRector implements 
     /**
      * @var string
      */
-    public const STATIC_TYPES = '$staticTypes';
+    private const STATIC_TYPES = '$staticTypes';
 
     /**
      * @var string[]

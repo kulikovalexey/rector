@@ -27,12 +27,12 @@ final class MoveValueObjectsToValueObjectDirectoryRector extends AbstractFileMov
     /**
      * @var string
      */
-    public const TYPES = '$types';
+    private const TYPES = '$types';
 
     /**
      * @var string
      */
-    public const SUFFIXES = '$suffixes';
+    private const SUFFIXES = '$suffixes';
 
     /**
      * @var string[]

@@ -25,9 +25,13 @@ use Symplify\SmartFileSystem\SmartFileInfo;
 final class AddTopIncludeRector extends AbstractFileSystemRector implements ConfigurableRectorInterface
 {
     /**
+     * @var mixed
+     */
+    public $mixed;
+    /**
      * @var string
      */
-    public const MATCH = '$match';
+    private const MATCH = '$match';
 
     /**
      * @var String_
@@ -37,7 +41,7 @@ final class AddTopIncludeRector extends AbstractFileSystemRector implements Conf
     /**
      * @var string[]
      */
-    private $patterns = [];
+    private const PATTERNS = [];
 
     public function __construct(string $autoloadFilePath = '/autoload.php')
     {
@@ -90,7 +94,7 @@ PHP
 
     public function configure(array $configuration): void
     {
-        $this->match = $configuration[self::MATCH] ?? [];
+        $this->mixed = $configuration[self::MATCH] ?? [];
     }
 
     /**
@@ -98,11 +102,11 @@ PHP
      */
     private function isFileInfoMatch(string $path): bool
     {
-        if ($this->patterns === []) {
+        if (self::PATTERNS === []) {
             return true;
         }
 
-        foreach ($this->patterns as $pattern) {
+        foreach (self::PATTERNS as $pattern) {
             if (fnmatch($pattern, $path, FNM_NOESCAPE)) {
                 return true;
             }

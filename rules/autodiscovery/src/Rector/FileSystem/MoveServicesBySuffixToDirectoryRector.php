@@ -26,7 +26,7 @@ final class MoveServicesBySuffixToDirectoryRector extends AbstractFileMovingFile
     /**
      * @var string
      */
-    public const GROUP_NAMES_BY_SUFFIX = '$groupNamesBySuffix';
+    private const GROUP_NAMES_BY_SUFFIX = '$groupNamesBySuffix';
 
     /**
      * @var string[]

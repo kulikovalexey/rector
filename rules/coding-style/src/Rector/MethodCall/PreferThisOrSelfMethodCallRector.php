@@ -22,7 +22,7 @@ final class PreferThisOrSelfMethodCallRector extends AbstractRector implements C
     /**
      * @var string
      */
-    public const TYPE_TO_PREFERENCE = '$typeToPreference';
+    private const TYPE_TO_PREFERENCE = '$typeToPreference';
 
     /**
      * @var string

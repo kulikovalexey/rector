@@ -40,7 +40,7 @@ final class PHPUnitStaticToKernelTestCaseGetRector extends AbstractRector implem
     /**
      * @var string
      */
-    public const STATIC_CLASS_TYPES = '$staticClassTypes';
+    private const STATIC_CLASS_TYPES = '$staticClassTypes';
 
     /**
      * @var string

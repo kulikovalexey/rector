@@ -30,7 +30,7 @@ final class NewUniqueObjectToEntityFactoryRector extends AbstractRector implemen
     /**
      * @var string
      */
-    public const TYPES_TO_SERVICES = '$typesToServices';
+    private const TYPES_TO_SERVICES = '$typesToServices';
 
     /**
      * @var string

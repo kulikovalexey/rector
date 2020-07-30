@@ -26,7 +26,7 @@ final class EntityAliasToClassConstantReferenceRector extends AbstractRector imp
     /**
      * @var string
      */
-    public const ALIASES_TO_NAMESPACES = '$aliasesToNamespaces';
+    private const ALIASES_TO_NAMESPACES = '$aliasesToNamespaces';
 
     /**
      * @var string[]

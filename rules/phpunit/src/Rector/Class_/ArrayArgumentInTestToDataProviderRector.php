@@ -42,7 +42,7 @@ final class ArrayArgumentInTestToDataProviderRector extends AbstractPHPUnitRecto
     /**
      * @var string
      */
-    public const CONFIGURATION = '$configuration';
+    private const CONFIGURATION = '$configuration';
 
     /**
      * @var mixed[]

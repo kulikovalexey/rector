@@ -155,12 +155,7 @@ PHP
         if (! $this->symfonyPhpConfigClosureAnalyzer->isPhpConfigClosure($closure)) {
             return true;
         }
-
-        if (! $this->isName($methodCall->name, 'call')) {
-            return true;
-        }
-
-        return false;
+        return ! $this->isName($methodCall->name, 'call');
     }
 
     private function matchRootSetMethodCall(MethodCall $methodCall): ?MethodCall

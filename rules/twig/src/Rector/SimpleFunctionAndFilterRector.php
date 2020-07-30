@@ -30,7 +30,7 @@ final class SimpleFunctionAndFilterRector extends AbstractRector implements Conf
     /**
      * @var string
      */
-    public const OLD_TO_NEW_CLASSES = '$oldToNewClasses';
+    private const OLD_TO_NEW_CLASSES = '$oldToNewClasses';
 
     /**
      * @var string[]

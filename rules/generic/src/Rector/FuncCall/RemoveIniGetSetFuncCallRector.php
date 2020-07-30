@@ -25,7 +25,7 @@ final class RemoveIniGetSetFuncCallRector extends AbstractRector implements Conf
     /**
      * @var string
      */
-    public const KEYS_TO_REMOVE = '$keysToRemove';
+    private const KEYS_TO_REMOVE = '$keysToRemove';
 
     /**
      * @var string[]

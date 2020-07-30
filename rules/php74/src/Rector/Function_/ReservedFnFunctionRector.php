@@ -23,7 +23,7 @@ final class ReservedFnFunctionRector extends AbstractRector implements Configura
     /**
      * @var string
      */
-    public const RESERVED_NAMES_TO_NEW_ONES = '$reservedNamesToNewOnes';
+    private const RESERVED_NAMES_TO_NEW_ONES = '$reservedNamesToNewOnes';
 
     /**
      * @var string[]
