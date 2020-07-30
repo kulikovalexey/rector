@@ -25,23 +25,24 @@ use Symplify\SmartFileSystem\SmartFileInfo;
 final class AddTopIncludeRector extends AbstractFileSystemRector implements ConfigurableRectorInterface
 {
     /**
-     * @var mixed
-     */
-    public $mixed;
-    /**
      * @var string
      */
     private const MATCH = '$match';
 
     /**
-     * @var String_
-     */
-    private $autoloadFilePathString;
-
-    /**
      * @var string[]
      */
     private const PATTERNS = [];
+
+    /**
+     * @var mixed
+     */
+    public $mixed;
+
+    /**
+     * @var String_
+     */
+    private $autoloadFilePathString;
 
     public function __construct(string $autoloadFilePath = '/autoload.php')
     {
