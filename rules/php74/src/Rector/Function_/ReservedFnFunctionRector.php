@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Php74\Rector\Function_;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Identifier;
@@ -17,20 +18,17 @@ use Rector\Core\RectorDefinition\RectorDefinition;
  * @see https://github.com/php/php-src/pull/3941/files#diff-7e3a1a5df28a1cbd8c0fb6db68f243da
  * @see \Rector\Php74\Tests\Rector\Function_\ReservedFnFunctionRector\ReservedFnFunctionRectorTest
  */
-final class ReservedFnFunctionRector extends AbstractRector
+final class ReservedFnFunctionRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var string[]
      */
     private $reservedNamesToNewOnes = [];
 
-    public function __construct(array $reservedNamesToNewOnes = [
-        // PHP 7.4
-        'fn' => 'f',
-    ])
-    {
-        $this->reservedNamesToNewOnes = $reservedNamesToNewOnes;
-    }
+    /**
+     * @var string
+     */
+    public const RESERVED_NAMES_TO_NEW_ONES = '$reservedNamesToNewOnes';
 
     public function getDefinition(): RectorDefinition
     {

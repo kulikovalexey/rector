@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Generic\Rector\ClassMethod;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Stmt\Class_;
@@ -20,7 +21,7 @@ use Rector\NodeTypeResolver\Node\AttributeKey;
 /**
  * @see \Rector\Generic\Tests\Rector\ClassMethod\ChangeContractMethodSingleToManyRector\ChangeContractMethodSingleToManyRectorTest
  */
-final class ChangeContractMethodSingleToManyRector extends AbstractRector
+final class ChangeContractMethodSingleToManyRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var mixed[]
@@ -28,15 +29,9 @@ final class ChangeContractMethodSingleToManyRector extends AbstractRector
     private $oldToNewMethodByType = [];
 
     /**
-     * E.g.:
-     * ClassType => [
-     *     oldMethod => newMethod
-     * ]
+     * @var string
      */
-    public function __construct(array $oldToNewMethodByType = [])
-    {
-        $this->oldToNewMethodByType = $oldToNewMethodByType;
-    }
+    public const OLD_TO_NEW_METHOD_BY_TYPE = '$oldToNewMethodByType';
 
     public function getDefinition(): RectorDefinition
     {

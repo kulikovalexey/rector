@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Generic\Rector\Argument;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\MethodCall;
@@ -16,7 +17,7 @@ use Rector\Core\RectorDefinition\RectorDefinition;
 /**
  * @see \Rector\Generic\Tests\Rector\Argument\ArgumentRemoverRector\ArgumentRemoverRectorTest
  */
-final class ArgumentRemoverRector extends AbstractRector
+final class ArgumentRemoverRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var mixed[]
@@ -24,12 +25,9 @@ final class ArgumentRemoverRector extends AbstractRector
     private $positionsByMethodNameByClassType = [];
 
     /**
-     * @param mixed[] $positionsByMethodNameByClassType
+     * @var string
      */
-    public function __construct(array $positionsByMethodNameByClassType = [])
-    {
-        $this->positionsByMethodNameByClassType = $positionsByMethodNameByClassType;
-    }
+    public const POSITIONS_BY_METHOD_NAME_BY_CLASS_TYPE = '$positionsByMethodNameByClassType';
 
     public function getDefinition(): RectorDefinition
     {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Restoration\Rector\Namespace_;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Nette\Utils\Strings;
 use PhpParser\Node;
 use PhpParser\Node\Stmt;
@@ -19,7 +20,7 @@ use Rector\Core\RectorDefinition\RectorDefinition;
 /**
  * @see \Rector\Restoration\Tests\Rector\Namespace_\CompleteImportForPartialAnnotationRector\CompleteImportForPartialAnnotationRectorTest
  */
-final class CompleteImportForPartialAnnotationRector extends AbstractRector
+final class CompleteImportForPartialAnnotationRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var string[][]
@@ -34,11 +35,15 @@ final class CompleteImportForPartialAnnotationRector extends AbstractRector
      * @var mixed[]
      */
     private $useImportsToRestore = [];
+    /**
+     * @var string
+     */
+    public const USE_IMPORTS_TO_RESTORE = '$useImportsToRestore';
 
     /**
      * @param mixed[] $useImportsToRestore
      */
-    public function __construct(array $useImportsToRestore = [])
+    public function __construct()
     {
         $this->useImportsToRestore = array_merge($useImportsToRestore, self::DEFAULT_IMPORTS_TO_RESTORE);
     }

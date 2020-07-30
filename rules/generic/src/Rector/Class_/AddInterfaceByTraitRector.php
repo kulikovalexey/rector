@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Generic\Rector\Class_;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Name\FullyQualified;
 use PhpParser\Node\Stmt\Class_;
@@ -15,7 +16,7 @@ use Rector\Core\RectorDefinition\RectorDefinition;
 /**
  * @see \Rector\Generic\Tests\Rector\Class_\AddInterfaceByTraitRector\AddInterfaceByTraitRectorTest
  */
-final class AddInterfaceByTraitRector extends AbstractRector
+final class AddInterfaceByTraitRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var string[]
@@ -26,13 +27,16 @@ final class AddInterfaceByTraitRector extends AbstractRector
      * @var ClassManipulator
      */
     private $classManipulator;
+    /**
+     * @var string
+     */
+    public const INTERFACE_BY_TRAIT = '$interfaceByTrait';
 
     /**
      * @param mixed[] $interfaceByTrait
      */
-    public function __construct(ClassManipulator $classManipulator, array $interfaceByTrait = [])
+    public function __construct(ClassManipulator $classManipulator)
     {
-        $this->interfaceByTrait = $interfaceByTrait;
         $this->classManipulator = $classManipulator;
     }
 

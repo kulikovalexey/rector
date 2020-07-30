@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Symfony\Rector\FrameworkBundle;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use Rector\Core\RectorDefinition\CodeSample;
@@ -14,7 +15,7 @@ use Rector\NodeTypeResolver\Node\AttributeKey;
  * Ref: https://github.com/symfony/symfony/blob/master/UPGRADE-4.0.md#console
  * @see \Rector\Symfony\Tests\Rector\FrameworkBundle\ContainerGetToConstructorInjectionRector\ContainerGetToConstructorInjectionRectorTest
  */
-final class ContainerGetToConstructorInjectionRector extends AbstractToConstructorInjectionRector
+final class ContainerGetToConstructorInjectionRector extends AbstractToConstructorInjectionRector implements ConfigurableRectorInterface
 {
     /**
      * @var string[]
@@ -22,15 +23,9 @@ final class ContainerGetToConstructorInjectionRector extends AbstractToConstruct
     private $containerAwareParentTypes = [];
 
     /**
-     * @param string[] $containerAwareParentTypes
+     * @var string
      */
-    public function __construct(array $containerAwareParentTypes = [
-        'Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand',
-        'Symfony\Bundle\FrameworkBundle\Controller\Controller',
-    ])
-    {
-        $this->containerAwareParentTypes = $containerAwareParentTypes;
-    }
+    public const CONTAINER_AWARE_PARENT_TYPES = '$containerAwareParentTypes';
 
     public function getDefinition(): RectorDefinition
     {

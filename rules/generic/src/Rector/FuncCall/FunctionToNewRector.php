@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Generic\Rector\FuncCall;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Expr\New_;
@@ -15,7 +16,7 @@ use Rector\Core\RectorDefinition\RectorDefinition;
 /**
  * @see \Rector\Generic\Tests\Rector\FuncCall\FunctionToNewRector\FunctionToNewRectorTest
  */
-final class FunctionToNewRector extends AbstractRector
+final class FunctionToNewRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var string[]
@@ -23,12 +24,9 @@ final class FunctionToNewRector extends AbstractRector
     private $functionToNew = [];
 
     /**
-     * @param string[] $functionToNew
+     * @var string
      */
-    public function __construct(array $functionToNew = [])
-    {
-        $this->functionToNew = $functionToNew;
-    }
+    public const FUNCTION_TO_NEW = '$functionToNew';
 
     public function getDefinition(): RectorDefinition
     {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Php55\Rector\String_;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Name\FullyQualified;
@@ -23,7 +24,7 @@ use ReflectionClass;
  *
  * @see \Rector\Php55\Tests\Rector\String_\StringClassNameToClassConstantRector\StringClassNameToClassConstantRectorTest
  */
-final class StringClassNameToClassConstantRector extends AbstractRector
+final class StringClassNameToClassConstantRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var string[]
@@ -41,16 +42,9 @@ final class StringClassNameToClassConstantRector extends AbstractRector
     private $sensitiveNonExistingClasses = [];
 
     /**
-     * @param string[] $classesToSkip
+     * @var string
      */
-    public function __construct(array $classesToSkip = [
-        // can be string
-        'Error',
-        'Exception',
-    ])
-    {
-        $this->classesToSkip = $classesToSkip;
-    }
+    public const CLASSES_TO_SKIP = '$classesToSkip';
 
     public function getDefinition(): RectorDefinition
     {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Generic\Rector\New_;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\New_;
 use Rector\Core\Rector\AbstractRector;
@@ -13,7 +14,7 @@ use Rector\Core\RectorDefinition\RectorDefinition;
 /**
  * @see \Rector\Generic\Tests\Rector\New_\NewToStaticCallRector\NewToStaticCallRectorTest
  */
-final class NewToStaticCallRector extends AbstractRector
+final class NewToStaticCallRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var string[]
@@ -21,12 +22,9 @@ final class NewToStaticCallRector extends AbstractRector
     private $typeToStaticCalls = [];
 
     /**
-     * @param string[] $typeToStaticCalls
+     * @var string
      */
-    public function __construct(array $typeToStaticCalls = [])
-    {
-        $this->typeToStaticCalls = $typeToStaticCalls;
-    }
+    public const TYPE_TO_STATIC_CALLS = '$typeToStaticCalls';
 
     public function getDefinition(): RectorDefinition
     {

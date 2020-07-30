@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Legacy\Rector\Include_;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node\Expr\BinaryOp\Concat;
 use PhpParser\Node\Expr\Include_;
 use PhpParser\Node\Scalar\MagicConst\Dir;
@@ -21,7 +22,7 @@ use Symplify\SmartFileSystem\SmartFileInfo;
  *
  * @see \Rector\Legacy\Tests\Rector\Include_\AddTopIncludeRector\AddTopIncludeRectorTest
  */
-final class AddTopIncludeRector extends AbstractFileSystemRector
+final class AddTopIncludeRector extends AbstractFileSystemRector implements ConfigurableRectorInterface
 {
     /**
      * @var String_
@@ -32,11 +33,14 @@ final class AddTopIncludeRector extends AbstractFileSystemRector
      * @var string[]
      */
     private $patterns = [];
+    /**
+     * @var string
+     */
+    public const MATCH = '$match';
 
-    public function __construct(string $autoloadFilePath = '/autoload.php', array $match = [])
+    public function __construct(string $autoloadFilePath = '/autoload.php')
     {
         $this->autoloadFilePathString = new String_($autoloadFilePath);
-        $this->patterns = $match;
     }
 
     public function getDefinition(): RectorDefinition

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Autodiscovery\Rector\FileSystem;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Nette\Utils\Strings;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
@@ -20,7 +21,7 @@ use Symplify\SmartFileSystem\SmartFileInfo;
  * @see \Rector\Autodiscovery\Tests\Rector\FileSystem\MoveServicesBySuffixToDirectoryRector\MoveServicesBySuffixToDirectoryRectorTest
  * @see \Rector\Autodiscovery\Tests\Rector\FileSystem\MoveServicesBySuffixToDirectoryRector\MutualRenameTest
  */
-final class MoveServicesBySuffixToDirectoryRector extends AbstractFileMovingFileSystemRector
+final class MoveServicesBySuffixToDirectoryRector extends AbstractFileMovingFileSystemRector implements ConfigurableRectorInterface
 {
     /**
      * @var string[]
@@ -28,12 +29,9 @@ final class MoveServicesBySuffixToDirectoryRector extends AbstractFileMovingFile
     private $groupNamesBySuffix = [];
 
     /**
-     * @param string[] $groupNamesBySuffix
+     * @var string
      */
-    public function __construct(array $groupNamesBySuffix = [])
-    {
-        $this->groupNamesBySuffix = $groupNamesBySuffix;
-    }
+    public const GROUP_NAMES_BY_SUFFIX = '$groupNamesBySuffix';
 
     public function getDefinition(): RectorDefinition
     {

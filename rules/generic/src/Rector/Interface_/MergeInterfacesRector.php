@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Generic\Rector\Interface_;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\Class_;
@@ -17,7 +18,7 @@ use Rector\Core\RectorDefinition\RectorDefinition;
  * - https://github.com/FriendsOfPHP/PHP-CS-Fixer/commit/614d2e6f7af5a5b0be5363ff536aed2b7ee5a31d
  * @see \Rector\Generic\Tests\Rector\Interface_\MergeInterfacesRector\MergeInterfacesRectorTest
  */
-final class MergeInterfacesRector extends AbstractRector
+final class MergeInterfacesRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var string[]
@@ -25,12 +26,9 @@ final class MergeInterfacesRector extends AbstractRector
     private $oldToNewInterfaces = [];
 
     /**
-     * @param string[] $oldToNewInterfaces
+     * @var string
      */
-    public function __construct(array $oldToNewInterfaces = [])
-    {
-        $this->oldToNewInterfaces = $oldToNewInterfaces;
-    }
+    public const OLD_TO_NEW_INTERFACES = '$oldToNewInterfaces';
 
     public function getDefinition(): RectorDefinition
     {

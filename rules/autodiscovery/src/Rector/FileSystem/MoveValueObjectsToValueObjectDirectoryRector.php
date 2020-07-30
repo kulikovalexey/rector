@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Autodiscovery\Rector\FileSystem;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Nette\Utils\Strings;
 use PhpParser\Node\Stmt\Class_;
 use Rector\Autodiscovery\Analyzer\ClassAnalyzer;
@@ -21,7 +22,7 @@ use Symplify\SmartFileSystem\SmartFileInfo;
  *
  * @see \Rector\Autodiscovery\Tests\Rector\FileSystem\MoveValueObjectsToValueObjectDirectoryRector\MoveValueObjectsToValueObjectDirectoryRectorTest
  */
-final class MoveValueObjectsToValueObjectDirectoryRector extends AbstractFileMovingFileSystemRector
+final class MoveValueObjectsToValueObjectDirectoryRector extends AbstractFileMovingFileSystemRector implements ConfigurableRectorInterface
 {
     /**
      * @var string[]
@@ -49,6 +50,14 @@ final class MoveValueObjectsToValueObjectDirectoryRector extends AbstractFileMov
      * @var bool
      */
     private $enableValueObjectGuessing = true;
+    /**
+     * @var string
+     */
+    public const TYPES = '$types';
+    /**
+     * @var string
+     */
+    public const SUFFIXES = '$suffixes';
 
     /**
      * @param string[] $types
@@ -56,13 +65,9 @@ final class MoveValueObjectsToValueObjectDirectoryRector extends AbstractFileMov
      */
     public function __construct(
         ClassAnalyzer $classAnalyzer,
-        array $types = [],
-        array $suffixes = [],
         bool $enableValueObjectGuessing = true
     ) {
         $this->classAnalyzer = $classAnalyzer;
-        $this->types = $types;
-        $this->suffixes = $suffixes;
         $this->enableValueObjectGuessing = $enableValueObjectGuessing;
     }
 

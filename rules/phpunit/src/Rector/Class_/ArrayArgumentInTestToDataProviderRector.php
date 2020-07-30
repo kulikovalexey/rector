@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\PHPUnit\Rector\Class_;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\Array_;
@@ -36,7 +37,7 @@ use Rector\PHPUnit\ValueObject\ParamAndArgValueObject;
  *
  * @see why → https://blog.martinhujer.cz/how-to-use-data-providers-in-phpunit/
  */
-final class ArrayArgumentInTestToDataProviderRector extends AbstractPHPUnitRector
+final class ArrayArgumentInTestToDataProviderRector extends AbstractPHPUnitRector implements ConfigurableRectorInterface
 {
     /**
      * @var mixed[]
@@ -57,18 +58,20 @@ final class ArrayArgumentInTestToDataProviderRector extends AbstractPHPUnitRecto
      * @var TypeFactory
      */
     private $typeFactory;
+    /**
+     * @var string
+     */
+    public const CONFIGURATION = '$configuration';
 
     /**
      * @param mixed[] $configuration
      */
     public function __construct(
         DataProviderClassMethodFactory $dataProviderClassMethodFactory,
-        TypeFactory $typeFactory,
-        array $configuration = []
+        TypeFactory $typeFactory
     ) {
         $this->dataProviderClassMethodFactory = $dataProviderClassMethodFactory;
         $this->typeFactory = $typeFactory;
-        $this->configuration = $configuration;
     }
 
     public function getDefinition(): RectorDefinition

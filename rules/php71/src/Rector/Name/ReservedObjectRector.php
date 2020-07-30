@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Php71\Rector\Name;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
@@ -18,7 +19,7 @@ use Rector\NodeTypeResolver\Node\AttributeKey;
  * @see https://github.com/cebe/yii2/commit/9548a212ecf6e50fcdb0e5ba6daad88019cfc544
  * @see \Rector\Php71\Tests\Rector\Name\ReservedObjectRector\ReservedObjectRectorTest
  */
-final class ReservedObjectRector extends AbstractRector
+final class ReservedObjectRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var string[]
@@ -26,12 +27,9 @@ final class ReservedObjectRector extends AbstractRector
     private $reservedKeywordsToReplacements = [];
 
     /**
-     * @param string[] $reservedKeywordsToReplacements
+     * @var string
      */
-    public function __construct(array $reservedKeywordsToReplacements = [])
-    {
-        $this->reservedKeywordsToReplacements = $reservedKeywordsToReplacements;
-    }
+    public const RESERVED_KEYWORDS_TO_REPLACEMENTS = '$reservedKeywordsToReplacements';
 
     public function getDefinition(): RectorDefinition
     {

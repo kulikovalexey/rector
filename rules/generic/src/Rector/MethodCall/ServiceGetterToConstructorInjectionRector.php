@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Generic\Rector\MethodCall;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\PropertyFetch;
@@ -21,7 +22,7 @@ use Rector\NodeTypeResolver\Node\AttributeKey;
  * @see \Rector\Generic\Tests\Rector\MethodCall\ServiceGetterToConstructorInjectionRector\ServiceGetterToConstructorInjectionRectorTest
  * @see \Rector\Generic\Tests\Rector\MethodCall\ServiceGetterToConstructorInjectionRector\ServiceGetterToConstructorInjectionRectorTest
  */
-final class ServiceGetterToConstructorInjectionRector extends AbstractRector
+final class ServiceGetterToConstructorInjectionRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var mixed[]
@@ -32,13 +33,16 @@ final class ServiceGetterToConstructorInjectionRector extends AbstractRector
      * @var PropertyNaming
      */
     private $propertyNaming;
+    /**
+     * @var string
+     */
+    public const METHOD_NAMES_BY_TYPES_TO_SERVICE_TYPES = '$methodNamesByTypesToServiceTypes';
 
     /**
      * @param mixed[] $methodNamesByTypesToServiceTypes
      */
-    public function __construct(PropertyNaming $propertyNaming, array $methodNamesByTypesToServiceTypes = [])
+    public function __construct(PropertyNaming $propertyNaming)
     {
-        $this->methodNamesByTypesToServiceTypes = $methodNamesByTypesToServiceTypes;
         $this->propertyNaming = $propertyNaming;
     }
 

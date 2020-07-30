@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Generic\Rector\Property;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use DI\Annotation\Inject as PHPDIInject;
 use JMS\DiExtraBundle\Annotation\Inject as JMSInject;
 use Nette\Utils\Strings;
@@ -32,7 +33,7 @@ use Symplify\SmartFileSystem\SmartFileInfo;
  *
  * @see \Rector\Generic\Tests\Rector\Property\InjectAnnotationClassRector\InjectAnnotationClassRectorTest
  */
-final class InjectAnnotationClassRector extends AbstractRector
+final class InjectAnnotationClassRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var string[]
@@ -56,17 +57,19 @@ final class InjectAnnotationClassRector extends AbstractRector
      * @var ServiceMapProvider
      */
     private $serviceMapProvider;
+    /**
+     * @var string
+     */
+    public const ANNOTATION_CLASSES = '$annotationClasses';
 
     /**
      * @param string[] $annotationClasses
      */
     public function __construct(
         ServiceMapProvider $serviceMapProvider,
-        ErrorAndDiffCollector $errorAndDiffCollector,
-        array $annotationClasses = []
+        ErrorAndDiffCollector $errorAndDiffCollector
     ) {
         $this->errorAndDiffCollector = $errorAndDiffCollector;
-        $this->annotationClasses = $annotationClasses;
         $this->serviceMapProvider = $serviceMapProvider;
     }
 

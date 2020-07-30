@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\RemovingStatic\Rector\Class_;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\PropertyFetch;
@@ -23,7 +24,7 @@ use Rector\RemovingStatic\UniqueObjectOrServiceDetector;
 /**
  * @see \Rector\RemovingStatic\Tests\Rector\Class_\PassFactoryToEntityRector\PassFactoryToEntityRectorTest
  */
-final class PassFactoryToUniqueObjectRector extends AbstractRector
+final class PassFactoryToUniqueObjectRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var string[]
@@ -54,6 +55,10 @@ final class PassFactoryToUniqueObjectRector extends AbstractRector
      * @var StaticTypesInClassResolver
      */
     private $staticTypesInClassResolver;
+    /**
+     * @var string
+     */
+    public const TYPES_TO_SERVICES = '$typesToServices';
 
     /**
      * @param string[] $typesToServices
@@ -63,15 +68,13 @@ final class PassFactoryToUniqueObjectRector extends AbstractRector
         PropertyNaming $propertyNaming,
         UniqueObjectOrServiceDetector $uniqueObjectOrServiceDetector,
         UniqueObjectFactoryFactory $uniqueObjectFactoryFactory,
-        FactoryClassPrinter $factoryClassPrinter,
-        array $typesToServices = []
+        FactoryClassPrinter $factoryClassPrinter
     ) {
         $this->propertyNaming = $propertyNaming;
         $this->uniqueObjectOrServiceDetector = $uniqueObjectOrServiceDetector;
         $this->uniqueObjectFactoryFactory = $uniqueObjectFactoryFactory;
         $this->factoryClassPrinter = $factoryClassPrinter;
         $this->staticTypesInClassResolver = $staticTypesInClassResolver;
-        $this->typesToServices = $typesToServices;
     }
 
     public function getDefinition(): RectorDefinition

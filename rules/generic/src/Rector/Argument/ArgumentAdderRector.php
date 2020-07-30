@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Generic\Rector\Argument;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\BuilderHelpers;
 use PhpParser\Node;
 use PhpParser\Node\Arg;
@@ -24,7 +25,7 @@ use Rector\NodeTypeResolver\Node\AttributeKey;
 /**
  * @see \Rector\Generic\Tests\Rector\Argument\ArgumentAdderRector\ArgumentAdderRectorTest
  */
-final class ArgumentAdderRector extends AbstractRector
+final class ArgumentAdderRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var string[][][][][]
@@ -49,12 +50,9 @@ final class ArgumentAdderRector extends AbstractRector
     private $positionWithDefaultValueByMethodNamesByClassTypes = [];
 
     /**
-     * @param mixed[] $positionWithDefaultValueByMethodNamesByClassTypes
+     * @var string
      */
-    public function __construct(array $positionWithDefaultValueByMethodNamesByClassTypes = [])
-    {
-        $this->positionWithDefaultValueByMethodNamesByClassTypes = $positionWithDefaultValueByMethodNamesByClassTypes;
-    }
+    public const POSITION_WITH_DEFAULT_VALUE_BY_METHOD_NAMES_BY_CLASS_TYPES = '$positionWithDefaultValueByMethodNamesByClassTypes';
 
     public function getDefinition(): RectorDefinition
     {

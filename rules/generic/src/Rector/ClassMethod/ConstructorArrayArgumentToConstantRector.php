@@ -79,12 +79,12 @@ PHP
             return null;
         }
 
-        $class = $node->getAttribute(AttributeKey::CLASS_NODE);
-        if (! $class instanceof Class_) {
+        $classLike = $node->getAttribute(AttributeKey::CLASS_NODE);
+        if (! $classLike instanceof Class_) {
             return null;
         }
 
-        if (! $this->isObjectType($class, RectorInterface::class)) {
+        if (! $this->isObjectType($classLike, RectorInterface::class)) {
             return null;
         }
 
@@ -108,9 +108,9 @@ PHP
             $constantName = StaticRectorStrings::camelToConstant($paramName);
             $classConst = $this->nodeFactory->createPublicClassConst($constantName, '$' . $paramName);
 
-            $this->addInterface($class);
+            $this->addInterface($classLike);
 
-            $this->addConstantToClass($class, $classConst);
+            $this->addConstantToClass($classLike, $classConst);
         }
 
         $this->removeClassMethodIfEmpty($node);

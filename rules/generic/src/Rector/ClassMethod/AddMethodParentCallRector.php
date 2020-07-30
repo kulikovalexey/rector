@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Generic\Rector\ClassMethod;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\StaticCall;
 use PhpParser\Node\Identifier;
@@ -18,7 +19,7 @@ use Rector\NodeTypeResolver\Node\AttributeKey;
 /**
  * @see \Rector\Generic\Tests\Rector\ClassMethod\AddMethodParentCallRector\AddMethodParentCallRectorTest
  */
-final class AddMethodParentCallRector extends AbstractRector
+final class AddMethodParentCallRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var mixed[]
@@ -26,12 +27,9 @@ final class AddMethodParentCallRector extends AbstractRector
     private $methodsByParentTypes = [];
 
     /**
-     * @param mixed[] $methodsByParentTypes
+     * @var string
      */
-    public function __construct(array $methodsByParentTypes = [])
-    {
-        $this->methodsByParentTypes = $methodsByParentTypes;
-    }
+    public const METHODS_BY_PARENT_TYPES = '$methodsByParentTypes';
 
     public function getDefinition(): RectorDefinition
     {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\CodingStyle\Rector\MethodCall;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\StaticCall;
@@ -16,7 +17,7 @@ use Rector\Core\RectorDefinition\RectorDefinition;
 /**
  * @see \Rector\CodingStyle\Tests\Rector\MethodCall\PreferThisOrSelfMethodCallRector\PreferThisOrSelfMethodCallRectorTest
  */
-final class PreferThisOrSelfMethodCallRector extends AbstractRector
+final class PreferThisOrSelfMethodCallRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var string
@@ -34,12 +35,9 @@ final class PreferThisOrSelfMethodCallRector extends AbstractRector
     private $typeToPreference = [];
 
     /**
-     * @param string[] $typeToPreference
+     * @var string
      */
-    public function __construct(array $typeToPreference = [])
-    {
-        $this->typeToPreference = $typeToPreference;
-    }
+    public const TYPE_TO_PREFERENCE = '$typeToPreference';
 
     public function getDefinition(): RectorDefinition
     {

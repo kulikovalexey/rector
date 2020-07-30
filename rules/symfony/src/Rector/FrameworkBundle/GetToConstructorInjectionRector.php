@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Symfony\Rector\FrameworkBundle;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use Rector\Core\RectorDefinition\CodeSample;
@@ -12,7 +13,7 @@ use Rector\Core\RectorDefinition\RectorDefinition;
 /**
  * @see \Rector\Symfony\Tests\Rector\FrameworkBundle\GetToConstructorInjectionRector\GetToConstructorInjectionRectorTest
  */
-final class GetToConstructorInjectionRector extends AbstractToConstructorInjectionRector
+final class GetToConstructorInjectionRector extends AbstractToConstructorInjectionRector implements ConfigurableRectorInterface
 {
     /**
      * @var string[]
@@ -20,15 +21,9 @@ final class GetToConstructorInjectionRector extends AbstractToConstructorInjecti
     private $getMethodAwareTypes = [];
 
     /**
-     * @param string[] $getMethodAwareTypes
+     * @var string
      */
-    public function __construct(array $getMethodAwareTypes = [
-        'Symfony\Bundle\FrameworkBundle\Controller\Controller',
-        'Symfony\Bundle\FrameworkBundle\Controller\ControllerTrait',
-    ])
-    {
-        $this->getMethodAwareTypes = $getMethodAwareTypes;
-    }
+    public const GET_METHOD_AWARE_TYPES = '$getMethodAwareTypes';
 
     public function getDefinition(): RectorDefinition
     {

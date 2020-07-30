@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\MagicDisclosure\Rector\ClassMethod;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Stmt\ClassMethod;
@@ -20,7 +21,7 @@ use Rector\NodeTypeResolver\Node\AttributeKey;
 /**
  * @see \Rector\MagicDisclosure\Tests\Rector\ClassMethod\ReturnThisRemoveRector\ReturnThisRemoveRectorTest
  */
-final class ReturnThisRemoveRector extends AbstractRector
+final class ReturnThisRemoveRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var string[]
@@ -31,13 +32,16 @@ final class ReturnThisRemoveRector extends AbstractRector
      * @var ClassNameTypeMatcher
      */
     private $classNameTypeMatcher;
+    /**
+     * @var string
+     */
+    public const CLASSES_TO_DEFLUENT = '$classesToDefluent';
 
     /**
      * @param string[] $classesToDefluent
      */
-    public function __construct(ClassNameTypeMatcher $classNameTypeMatcher, array $classesToDefluent = [])
+    public function __construct(ClassNameTypeMatcher $classNameTypeMatcher)
     {
-        $this->classesToDefluent = $classesToDefluent;
         $this->classNameTypeMatcher = $classNameTypeMatcher;
     }
 

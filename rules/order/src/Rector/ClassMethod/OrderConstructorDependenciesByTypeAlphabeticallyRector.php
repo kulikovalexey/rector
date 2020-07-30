@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Order\Rector\ClassMethod;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
@@ -20,17 +21,17 @@ use Symplify\SmartFileSystem\SmartFileInfo;
 /**
  * @see \Rector\Order\Tests\Rector\ClassMethod\OrderConstructorDependenciesByTypeAlphabeticallyRector\OrderConstructorDependenciesByTypeAlphabeticallyRectorTest
  */
-final class OrderConstructorDependenciesByTypeAlphabeticallyRector extends AbstractRector
+final class OrderConstructorDependenciesByTypeAlphabeticallyRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var array
      */
     private $skipPatterns = [];
 
-    public function __construct(array $skipPatterns = ['*/ValueObject/*'])
-    {
-        $this->skipPatterns = $skipPatterns;
-    }
+    /**
+     * @var string
+     */
+    public const SKIP_PATTERNS = '$skipPatterns';
 
     public function getDefinition(): RectorDefinition
     {

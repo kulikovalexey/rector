@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\FileSystemRector\Rector\Removing;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Core\Exception\ShouldNotHappenException;
 use Rector\Core\RectorDefinition\CodeSample;
 use Rector\Core\RectorDefinition\RectorDefinition;
@@ -11,7 +12,7 @@ use Rector\FileSystemRector\Configuration\Option;
 use Rector\FileSystemRector\Rector\AbstractFileSystemRector;
 use Symplify\SmartFileSystem\SmartFileInfo;
 
-final class RemoveProjectFileRector extends AbstractFileSystemRector
+final class RemoveProjectFileRector extends AbstractFileSystemRector implements ConfigurableRectorInterface
 {
     /**
      * @var string[]
@@ -19,12 +20,9 @@ final class RemoveProjectFileRector extends AbstractFileSystemRector
     private $filePathsToRemove = [];
 
     /**
-     * @param string[] $filePathsToRemove
+     * @var string
      */
-    public function __construct(array $filePathsToRemove = [])
-    {
-        $this->filePathsToRemove = $filePathsToRemove;
-    }
+    public const FILE_PATHS_TO_REMOVE = '$filePathsToRemove';
 
     public function refactor(SmartFileInfo $smartFileInfo): void
     {

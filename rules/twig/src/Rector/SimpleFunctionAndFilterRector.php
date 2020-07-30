@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Twig\Rector;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\Array_;
@@ -28,7 +29,7 @@ use Twig_SimpleFunction;
  *
  * @see \Rector\Twig\Tests\Rector\SimpleFunctionAndFilterRector\SimpleFunctionAndFilterRectorTest
  */
-final class SimpleFunctionAndFilterRector extends AbstractRector
+final class SimpleFunctionAndFilterRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var string[]
@@ -36,15 +37,9 @@ final class SimpleFunctionAndFilterRector extends AbstractRector
     private $oldToNewClasses = [];
 
     /**
-     * @param string[] $oldToNewClasses
+     * @var string
      */
-    public function __construct(array $oldToNewClasses = [
-        Twig_Function_Method::class => Twig_SimpleFunction::class,
-        Twig_Filter_Method::class => Twig_SimpleFilter::class,
-    ])
-    {
-        $this->oldToNewClasses = $oldToNewClasses;
-    }
+    public const OLD_TO_NEW_CLASSES = '$oldToNewClasses';
 
     public function getDefinition(): RectorDefinition
     {

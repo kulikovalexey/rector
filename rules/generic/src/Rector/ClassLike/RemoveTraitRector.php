@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Generic\Rector\ClassLike;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\Class_;
@@ -17,7 +18,7 @@ use Rector\NodeTypeResolver\Node\AttributeKey;
 /**
  * @see \Rector\Generic\Tests\Rector\ClassLike\RemoveTraitRector\RemoveTraitRectorTest
  */
-final class RemoveTraitRector extends AbstractRector
+final class RemoveTraitRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var bool
@@ -33,14 +34,17 @@ final class RemoveTraitRector extends AbstractRector
      * @var ClassManipulator
      */
     private $classManipulator;
+    /**
+     * @var string
+     */
+    public const TRAITS_TO_REMOVE = '$traitsToRemove';
 
     /**
      * @param string[] $traitsToRemove
      */
-    public function __construct(ClassManipulator $classManipulator, array $traitsToRemove = [])
+    public function __construct(ClassManipulator $classManipulator)
     {
         $this->classManipulator = $classManipulator;
-        $this->traitsToRemove = $traitsToRemove;
     }
 
     public function getDefinition(): RectorDefinition

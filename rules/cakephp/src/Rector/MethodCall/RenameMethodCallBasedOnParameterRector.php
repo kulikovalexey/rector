@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\CakePHP\Rector\MethodCall;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Identifier;
@@ -17,7 +18,7 @@ use Rector\Core\RectorDefinition\RectorDefinition;
  * @see https://github.com/cakephp/cakephp/commit/77017145961bb697b4256040b947029259f66a9b
  * @see \Rector\CakePHP\Tests\Rector\MethodCall\RenameMethodCallBasedOnParameterRector\RenameMethodCallBasedOnParameterRectorTest
  */
-final class RenameMethodCallBasedOnParameterRector extends AbstractRector
+final class RenameMethodCallBasedOnParameterRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var string
@@ -35,12 +36,9 @@ final class RenameMethodCallBasedOnParameterRector extends AbstractRector
     private $methodNamesByTypes = [];
 
     /**
-     * @param mixed[] $methodNamesByTypes
+     * @var string
      */
-    public function __construct(array $methodNamesByTypes = [])
-    {
-        $this->methodNamesByTypes = $methodNamesByTypes;
-    }
+    public const METHOD_NAMES_BY_TYPES = '$methodNamesByTypes';
 
     public function getDefinition(): RectorDefinition
     {

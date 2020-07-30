@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\Generic\Rector\FuncCall;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Comment;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
@@ -19,7 +20,7 @@ use Rector\NodeTypeResolver\Node\AttributeKey;
  *
  * @see \Rector\Generic\Tests\Rector\FuncCall\RemoveIniGetSetFuncCallRector\RemoveIniGetSetFuncCallRectorTest
  */
-final class RemoveIniGetSetFuncCallRector extends AbstractRector
+final class RemoveIniGetSetFuncCallRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var string[]
@@ -35,16 +36,16 @@ final class RemoveIniGetSetFuncCallRector extends AbstractRector
      * @var CommentableNodeResolver
      */
     private $commentableNodeResolver;
+    /**
+     * @var string
+     */
+    public const KEYS_TO_REMOVE = '$keysToRemove';
 
     /**
      * @param string[] $keysToRemove
      */
-    public function __construct(
-        BreakingRemovalGuard $breakingRemovalGuard,
-        CommentableNodeResolver $commentableNodeResolver,
-        array $keysToRemove = []
-    ) {
-        $this->keysToRemove = $keysToRemove;
+    public function __construct(BreakingRemovalGuard $breakingRemovalGuard, CommentableNodeResolver $commentableNodeResolver)
+    {
         $this->breakingRemovalGuard = $breakingRemovalGuard;
         $this->commentableNodeResolver = $commentableNodeResolver;
     }

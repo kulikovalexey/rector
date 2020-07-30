@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rector\RemovingStatic\Rector\Class_;
 
+use Rector\Core\Contract\Rector\ConfigurableRectorInterface;
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\New_;
@@ -24,7 +25,7 @@ use Rector\RemovingStatic\StaticTypesInClassResolver;
  *
  * @see \Rector\RemovingStatic\Tests\Rector\Class_\PassFactoryToEntityRector\PassFactoryToEntityRectorTest
  */
-final class NewUniqueObjectToEntityFactoryRector extends AbstractRector
+final class NewUniqueObjectToEntityFactoryRector extends AbstractRector implements ConfigurableRectorInterface
 {
     /**
      * @var string
@@ -55,16 +56,16 @@ final class NewUniqueObjectToEntityFactoryRector extends AbstractRector
      * @var StaticTypesInClassResolver
      */
     private $staticTypesInClassResolver;
+    /**
+     * @var string
+     */
+    public const TYPES_TO_SERVICES = '$typesToServices';
 
     /**
      * @param string[] $typesToServices
      */
-    public function __construct(
-        PropertyNaming $propertyNaming,
-        StaticTypesInClassResolver $staticTypesInClassResolver,
-        array $typesToServices = []
-    ) {
-        $this->typesToServices = $typesToServices;
+    public function __construct(PropertyNaming $propertyNaming, StaticTypesInClassResolver $staticTypesInClassResolver)
+    {
         $this->propertyNaming = $propertyNaming;
         $this->staticTypesInClassResolver = $staticTypesInClassResolver;
     }
